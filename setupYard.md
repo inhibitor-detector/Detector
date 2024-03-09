@@ -1,31 +1,49 @@
+# guide to setup yard with rfcat
 
-basic rfcat setup:
+## basic rfcat setup:
 	https://blog.thehackingday.com/2019/08/yard-stick-one-primeros-pasos.html
 
-Notes About YARD:
+## Notes About YARD:
 	https://gist.github.com/JamesHagerman/40f414c5f0db8d476d64f78f9dd3a7b6
 
-using YARD with RFcat and OOKTOOLS
+## using YARD with RFcat and OOKTOOLS
 	https://softwaretester.info/rfcat-on-bigsur-yard-stick-one/
 	https://softwaretester.info/tag/rfcat/
 
+## RFCat
 
-To list usbs and see if YARD its connected and detected
+### To list usbs and see if YARD its connected and detected
+```
 lsusb
+```
 
-run rfcat:
+### run rfcat:
+```
 sudo rfcat -r
+```
 
-test:
+### test:
+```
 d.ping()
+```
 
-show config:
+### show config:
+```
 print(d.reprRadioConfig())
+```
 
-read air waves on freq:
+### read air waves on freq:
+```
 d.specan(433000000)
+```
 
+### maybe rfcat for mac:
+https://github.com/gqrx-sdr/gqrx/issues/714
+pip install PySide2
+rfcat -r
+d.specan(315000000)
 
+## OOKTools
 On-Off keying:
 	https://greatscottgadgets.com/sdr/
 
@@ -43,6 +61,12 @@ i had to debug a ooktools file bc it was written in python2.7
 original backup is in /tesis 
 
 
+
+## GQRX
+
 would be great if i could make GQRX work:
 	gqrx
-	cant find the yard in the fucking dewvices
+	cant find the yard in the devices
+	here, GQRX wont work::
+	https://forums.hak5.org/topic/36844-yard-stick-one-configuration-help/
+

@@ -26,7 +26,9 @@ RUN python setup.py install
 WORKDIR /app
 
 # Copy your application files if needed
-# COPY . /app
+RUN apt-get install -y expect
+COPY auto_rfcat.sh /app/auto_rfcat.sh
+RUN chmod +x /app/auto_rfcat.sh
 
 # clean / optimise docker size
 RUN apt-get autoremove -y
@@ -35,4 +37,4 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN rm -rf /tmp/* /var/tmp/*
 
 # Run rfcat on start
-CMD ["rfcat -r"]
+CMD ["/app/auto_rfcat.sh"]

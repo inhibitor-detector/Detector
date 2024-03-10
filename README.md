@@ -33,7 +33,7 @@ Here, we can identify YARD Stick One on Bus 001, Device 017.
 Then, we can run our docker image using `docker run` as follows:
 
 ```bash
-sudo docker run -it --privileged --device=/dev/bus/usb/001/017 rfcat_container_1
+sudo docker run -it --privileged --device=/dev/bus/usb/001/017 -v ./app:/app rfcat_container_1
 ```
 Note the flags: 
 - `-it`:
@@ -41,6 +41,7 @@ Note the flags:
     - `t` terminal, which allocates a pseudo-TTY (teletypewriter) to the container, enabling you to see its output and interact with it as if it were a local terminal.
 - `--privileged`: to run the image with privilages, needed to run rfcat inside without using "sudo", which is not configured out of the box for docker containers(?)
 - `--device=/dev/bus/usb/001/017`: to use our usb device inside the docker container
+- `-v`: maps a host volume inside Docker container, so that we have access from outside the container to the generated logs.
 
 
 ## Debugging

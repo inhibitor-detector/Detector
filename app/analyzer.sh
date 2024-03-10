@@ -17,6 +17,7 @@ if [ -f "$logs_file" ]; then
         # Perform simple analysis on each line
         if [[ "$line" == *"ffffff"* ]]; then
             echo "Inhibitor detected"
+            #curl xxx
         fi
 
         if [[ "$line" == *"exit()"* ]]; then #exit manually by dev or automatically when rfcat finishes

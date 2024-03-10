@@ -27,7 +27,7 @@ WORKDIR /app
 
 # Copy your application files if needed
 RUN apt-get install -y expect
-COPY auto_rfcat.sh /app/auto_rfcat.sh
+COPY ./app/auto_rfcat.sh /app/auto_rfcat.sh
 RUN chmod +x /app/auto_rfcat.sh
 
 # clean / optimise docker size
@@ -37,4 +37,4 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN rm -rf /tmp/* /var/tmp/*
 
 # Run rfcat on start
-CMD ["/app/auto_rfcat.sh"]
+CMD ["/app/start.sh"]

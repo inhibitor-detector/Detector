@@ -37,11 +37,20 @@ print(d.reprRadioConfig())
 d.specan(433000000)
 ```
 
+### interesting
+```
+help(d.discover)
+```
+
+
 ### maybe rfcat for mac:
 https://github.com/gqrx-sdr/gqrx/issues/714
 pip install PySide2
 rfcat -r
 d.specan(315000000)
+
+
+
 
 ## OOKTools
 On-Off keying:
@@ -59,6 +68,8 @@ sudo ooktools --help
 	https://leonjza.github.io/blog/2016/10/08/ooktools-on-off-keying-tools-for-your-sdr/
 i had to debug a ooktools file bc it was written in python2.7
 original backup is in /tesis 
+
+
 
 
 

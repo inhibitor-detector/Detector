@@ -30,6 +30,9 @@ RUN apt-get install -y expect
 COPY ./app/auto_rfcat.sh /app/auto_rfcat.sh
 RUN chmod +x /app/auto_rfcat.sh
 
+COPY ./app/analyzer.sh /app/analyzer.sh
+RUN chmod +x /app/analyzer.sh
+
 # clean / optimise docker size
 RUN apt-get autoremove -y
 RUN apt-get clean

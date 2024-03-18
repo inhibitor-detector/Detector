@@ -1,2 +1,6 @@
 log_*.txt
 *.pyc
+
+api/.idea
+api/venv
+api/__pycache__

@@ -4,8 +4,7 @@ ls
 
 # Verificar si la carpeta venv existe
 if [ ! -d "venv" ]; then
-    echo "Cre
-    ando entorno virtual..."
+    echo "Creando entorno virtual..."
     # Crear un entorno virtual llamado venv
     python3 -m venv venv
     echo "Entorno virtual creado."
@@ -17,7 +16,7 @@ pip install --upgrade pip
 
 pip install -r requirements.txt
 
-uvicorn main:app --port 4141
+uvicorn main:app --port 4141 --host 0.0.0.0
 
 echo "done, bye!"
 exit

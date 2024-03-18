@@ -1,7 +1,5 @@
 #!/bin/bash
 
-ls
-
 # Verificar si la carpeta venv existe
 if [ ! -d "venv" ]; then
     echo "Creando entorno virtual..."
@@ -10,12 +8,16 @@ if [ ! -d "venv" ]; then
     echo "Entorno virtual creado."
 fi
 # Activar el entorno virtual
+echo "Activando entorno virtual"
 source venv/bin/activate
 
-pip install --upgrade pip
+echo "Chequeando version de pip"
+pip install --upgrade pip > /dev/null 2>&1
 
-pip install -r requirements.txt
+echo "Chequeando dependencias"
+pip install -r requirements.txt > /dev/null 2>&1
 
+echo "Iniciando uvicorn"
 uvicorn main:app --port 4141 --host 0.0.0.0
 
 echo "done, bye!"

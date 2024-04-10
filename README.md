@@ -9,6 +9,12 @@ To build this docker image, with output image name rfcat_container_1, we must:
 sudo docker build -t rfcat_container_1 .
 ```
 
+Now that the image works for a PC, we must make the docker image compatible for our RPI
+```bash
+docker build --platform=linux/arm/v6 -t rfcat_analizer .
+```
+
+
 ## Execution 
 As we want to run it using YARD Stick One, we must redirect its usb input to the inside of the Docker container, like this:
 

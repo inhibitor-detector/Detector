@@ -1,43 +1,45 @@
-# Use a base image with Python 2.7
-FROM python:3
+# Use a base image with Python 2.7 ?
+# FROM python:3
+FROM arm32v6/python:3.11-alpine3.18
 
-# Install rfcat dependencies
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get install libusb-1.0
+# Install basic dependencies
+RUN apk update
+RUN apk upgrade
+RUN apk add bash
+RUN apk add git
+RUN apk add --update python3 python3-dev gfortran py-pip build-base py3-numpy
+RUN apk add libusb
+RUN apk --no-cache add musl-dev linux-headers g++
 WORKDIR /app
-RUN pip install pyusb
-RUN pip install numpy
-RUN pip install ipython==5
-RUN pip install PySide2
+RUN pip install --upgrade pip
+# RUN pip install pyusb #installed by rfcat
+# RUN pip install numpy #better installed in line 10
+# RUN pip install ipython==5 #installed by rfcat
+# RUN pip install PySide2 #not compatible with RPI (we won't need it anyways)
 
 # Install rfcat
 WORKDIR /app
-RUN git clone https://github.com/atlas0fd00m/rfcat.git
-WORKDIR /app/rfcat
-RUN python setup.py install
+RUN git clone https://github.com/uri-99/rfcat-tesis.git
+WORKDIR /app/rfcat-tesis
+RUN python3 setup.py install
 
-# install ooktools
-# WORKDIR /app
-# RUN pip install ooktools
-
-
-# Set the working directory
+# Install expect tool
 WORKDIR /app
+RUN apk add expect
 
-# Copy your application files if needed
-RUN apt-get install -y expect
+
+# Copy application files
 COPY ./app/auto_rfcat.sh /app/auto_rfcat.sh
 RUN chmod +x /app/auto_rfcat.sh
-
 COPY ./app/analyzer.sh /app/analyzer.sh
 RUN chmod +x /app/analyzer.sh
+COPY ./app/start.sh /app/start.sh
+RUN chmod +x /app/start.sh
 
-#todo add start.sh
-
-# clean / optimise docker size
-RUN apt-get autoremove -y
-RUN apt-get clean
+# clean / optimize docker size
+# todo: migrate following apt-get to Alpine format
+# RUN apt-get autoremove -y
+# RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
 RUN rm -rf /tmp/* /var/tmp/*
 

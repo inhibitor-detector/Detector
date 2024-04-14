@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 filename="./logs/log_$(date +'%Y-%m-%d_%H-%M-%S').txt"
 touch "$filename"

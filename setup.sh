@@ -6,6 +6,7 @@ apt-get upgrade -y
 # Install deps
 apt-get install libusb-1.0
 pip install --upgrade pip
+pip install watchdog
 
 # Install expect tool
 apt-get install -y expect

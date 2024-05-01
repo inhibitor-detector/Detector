@@ -1,0 +1,51 @@
+spawn rfcat -r
+/usr/local/bin/rfcat:4: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  __import__('pkg_resources').run_script('rfcat==2.0.1', 'rfcat')
+'RfCat, the greatest thing since Frequency Hopping!'
+
+Research Mode: enjoy the raw power of rflib
+
+currently your environment has an object called "d" for dongle.  this is how 
+you interact with the rfcat dongle:
+    >>> d.ping()
+    >>> d.setFreq(433000000)
+    >>> d.setMdmModulation(MOD_ASK_OOK)
+    >>> d.makePktFLEN(250)
+    >>> d.RFxmit(b"HALLO")
+    >>> d.RFrecv()
+    >>> print(d.reprRadioConfig())
+
+
+No module named 'imp'
+
+falling back to straight Python... (ModuleNotFoundError("No module named 'imp'"))
+Python 3.12.2 (main, Feb 13 2024, 09:17:46) [GCC 12.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> d.setFreq(433920000)
+>>> d.discover()
+(press Enter to quit)
+
+(1710034853.542) Received:  0f0787c3c1e1f0f0f8787c3c1e1f0f078783c3e1e0f0787c3c3e1e1f0f07
+(1710034853.548) Received:  3c3e1f0f0787c3e1e1f0f078783c3e1e0f0f078783c3e1e0f0f0787c3c3e
+(1710034853.555) Received:  f0f0f87c3c1e1e0f0f8783c3c1e1f0f0787c3e1e00ff87803c1fe00ff078
+(1710034853.561) Received:  3fe1f0f87807fc01e1ff0f8783c3e01ff007f803fe1f0f0f87c3c01e1f0f
+(1710034853.568) Received:  c3c01f0f0f8787fc01fe00ff807fc3c01e0ff0787c3c3e1f00ff87803fe0
+(1710034853.575) Received:  00787fc03fe00f0ff87c03e1fe1f0ffffc0001e0f0f0787c3c1e1e0f0f87
+(1710034853.581) Received:  3e1e00ff87807c3fe01ff0f07803fc1e1f0f007fc03c1fe0f0f0787803fe
+(1710034853.588) Received:  f007fc3c1e1f0f0f80783c3fe1e0f0078783c1e1ff007f803fe01ff0f807
+(1710034853.594) Received:  e1f0f078783c01fe0f007fc03fe00f0ff803fc01e0ff87803c3fe1f0ffff
+(1710034854.354) Received:  000000000000000000000000000000000000000000000000000000000000
+(1710034855.494) Received:  1f1f0f8783c3e1e0f078783c3e1e1f0f0f8787c3c1e1f0f0783c3e1e0f0f
+(1710034855.500) Received:  7c3c3e1e0f0f8787c3c1e1e0f0f8787c3e1e0f0f0783c3e1f0f0f8783c3e
+(1710034855.507) Received:  f0f0f8783c3e1e1f0f0787c3c3e1e0f0f007fc3e00f0ff803fe1e1f00ff8
+(1710034855.513) Received:  c3e01ff007fc03e1fe0f0f807fc03fe1e0f00ff8783c3e1e00f078783fc3
+(1710034855.520) Received:  00ff8787c01fe00ff00787fc01e1f0f87c3fe01ff00ff803c3e1ff0f0787
+(1710034855.527) Received:  fe1f00f8787fc01e1e0f0fffff80001e1f0f0783c3c1e1f0f0787c3c1e1f
+(1710034855.533) Received:  f87c03e1ff00ff8787c01fe0f0f07803fc01ff00f87fc3c3e01ff00ff878
+(1710034855.540) Received:  3fe1f0f0f87803c3e1e0ff0787803fe1e0f007f803fc01e0ff0078783c3e
+(1710034856.218) Received:  00ff807fc01e1f0ff0787c3e01ff0f80787c3fe01f0f0787ffffe3ebffff
+
+Exiting Discover mode...
+>>> exit()
+===== RESETUP set from recv thread

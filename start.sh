@@ -8,7 +8,7 @@ touch "$filename"
 # ./auto_rfcat.sh | tee "$filename" &
 ./app/auto_rfcat.sh >> "$filename" &
 
-./app/analyzer.sh $filename &
+./app/analyzer.py $filename &
 
 wait
 

@@ -10,9 +10,6 @@ pip install --upgrade pip
 # Install expect tool
 apt-get install -y expect
 
-# Install Repo
-git clone https://github.com/uri-99/Tesis.git
-cd Tesis/app
 
 # Install rfcat
 git clone https://github.com/atlas0fd00m/rfcat.git

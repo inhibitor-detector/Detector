@@ -22,6 +22,7 @@ class LogFileHandler(FileSystemEventHandler):
                 if "ffffff" in line:
                     print("Inhibitor detected")
                     # curl xxx
+                    # TODO make a post here with requests or something cheto
                 elif "exit()" in line:  # exit manually by dev or automatically when rfcat finishes
                     print("Exit detected")
                     self.is_running = False
@@ -30,7 +31,7 @@ class LogFileHandler(FileSystemEventHandler):
 
 
 def main():
-    print("HELLO I AM ANALYZER")
+    print("HELLO, I AM ANALYZER")
 
     # Check if the logs file argument is provided
     if len(sys.argv)!= 2:

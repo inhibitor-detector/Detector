@@ -193,18 +193,3 @@ Type "help", "copyright", "credits" or "license" for more information.
 (1710034856.650) Received:  bfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 (1710034856.657) Received:  ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 (1710034856.663) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-(1710034856.663) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-(1710034856.663) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-(1710034856.663) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-
-(1710034856.663) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-(1710034856.663) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-(1710034856.663) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-
-(1710034856.663) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-(1710034856.663) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-(1710034856.663) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-
-(1710034856.663) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-(1710034856.663) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-(1710034856.663) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff

@@ -11,6 +11,7 @@ class LogFileHandler(FileSystemEventHandler):
     def __init__(self, logs_file):
         self.logs_file = logs_file
         self.last_line_number = 0
+        self.is_running = True
 
     def on_modified(self, event):
 
@@ -22,8 +23,8 @@ class LogFileHandler(FileSystemEventHandler):
                     print("Inhibitor detected")
                     # curl xxx
                 elif "exit()" in line:  # exit manually by dev or automatically when rfcat finishes
-                    print("Exit")
-                    sys.exit()
+                    print("Exit detected")
+                    self.is_running = False
 
                 self.last_line_number += 1
 
@@ -50,8 +51,9 @@ def main():
     observer.start()
 
     try:
-        while True:
+        while event_handler.is_running:
             time.sleep(1)
+        observer.stop()
     except KeyboardInterrupt:
         observer.stop()
     observer.join()

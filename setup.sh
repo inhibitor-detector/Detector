@@ -6,8 +6,9 @@ apt-get upgrade -y
 # Install deps
 apt-get install libusb-1.0
 pip install --upgrade pip
+
 # Install expect tool
-RUN apt-get install -y expect
+apt-get install -y expect
 
 # Install Repo
 git clone https://github.com/uri-99/Tesis.git

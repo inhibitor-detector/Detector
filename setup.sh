@@ -17,8 +17,8 @@ python3 setup.py install
 
 cd .. #return to /Tesis/app
 
+#clean
 apt-get autoremove -y
 apt-get clean
-# worked in docker, check in .sh
-# rm -rf /var/lib/apt/lists/*
-# rm -rf /tmp/* /var/tmp/*
+rm -rf /var/lib/apt/lists/*
+rm -rf /tmp/* /var/tmp/*

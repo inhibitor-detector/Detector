@@ -15,7 +15,7 @@ export RFCAT_PID=$!
 # ./app/heartbeat.py &
 # export HEARTBEAT_PID=$!
 
-./app/src/main.py $filename &
+python ./app/src/main.py $filename &
 
 wait
 

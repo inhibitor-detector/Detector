@@ -6,3 +6,4 @@ start:
 
 generate-password:
 	./app/generate_password.sh
+	

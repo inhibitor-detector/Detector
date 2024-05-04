@@ -1,7 +1,8 @@
 import sys
 import os
-import watchdog
+import requests
 
+# import watchdog
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
@@ -23,12 +24,15 @@ class LogFileHandler(FileSystemEventHandler):
                     print("Inhibitor detected")
                     # curl xxx
                     # TODO make a post here with requests or something cheto
+                    response = requests.get("http://wttr.in")
+                    print(response)
                 elif "exit()" in line:  # exit manually by dev or automatically when rfcat finishes
                     print("Exit detected")
                     self.is_running = False
 
                 self.last_line_number += 1
 
+#todo implement heartbeat
 
 def main():
     print("HELLO, I AM ANALYZER")
@@ -54,6 +58,7 @@ def main():
     try:
         while event_handler.is_running:
             time.sleep(1)
+            print("Analyzer is running...")
         observer.stop()
     except KeyboardInterrupt:
         observer.stop()
@@ -61,3 +66,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+use: constants.name

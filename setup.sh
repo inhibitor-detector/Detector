@@ -1,12 +1,15 @@
 #!/bin/bash
 
-apt-get update
-apt-get upgrade -y
+# apt-get update
+# apt-get upgrade -y
 
 # Install deps
 apt-get install libusb-1.0
 pip install --upgrade pip
 pip install watchdog
+pip install requests
+pip install schedule
+pip install python-dotenv
 
 # Install expect tool
 apt-get install -y expect

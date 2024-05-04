@@ -1,0 +1,36 @@
+spawn rfcat -r
+/usr/local/bin/rfcat:4: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  __import__('pkg_resources').run_script('rfcat==2.0.1', 'rfcat')
+'RfCat, the greatest thing since Frequency Hopping!'
+
+Research Mode: enjoy the raw power of rflib
+
+currently your environment has an object called "d" for dongle.  this is how 
+you interact with the rfcat dongle:
+    >>> d.ping()
+    >>> d.setFreq(433000000)
+    >>> d.setMdmModulation(MOD_ASK_OOK)
+    >>> d.makePktFLEN(250)
+    >>> d.RFxmit(b"HALLO")
+    >>> d.RFrecv()
+    >>> print(d.reprRadioConfig())
+
+
+No module named 'imp'
+
+falling back to straight Python... (ModuleNotFoundError("No module named 'imp'"))
+Python 3.12.2 (main, Feb 13 2024, 09:17:46) [GCC 12.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> d.setFreq(433920000)
+>>> d.discover()
+(press Enter to quit)
+
+(1710034852.373) Received:  ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+(1710034852.380) Received:  efffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+(1710034853.555) Received:  f0f0f87c3c1e1e0f0f8783c3c1e1f0f0787c3e1e00ff87803c1fe00ff078
+(1710034854.354) Received:  000000000000000000000000000000000000000000000000000000000000
+(1710034855.500) Received:  7c3c3e1e0f0f8787c3c1e1e0f0f8787c3e1e0f0f0783c3e1f0f0f8783c3e
+(1710034856.491) Received:  ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+(1710034856.644) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+(1710034856.644) Received:  dfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff

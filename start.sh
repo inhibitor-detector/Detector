@@ -9,11 +9,13 @@ touch "$filename"
 ./app/auto_rfcat.sh >> "$filename" &
 export RFCAT_PID=$!
 
-./app/analyzer.py $filename &
-export ANALYZER_PID=$!
+# ./app/analyzer.py $filename &
+# export ANALYZER_PID=$!
 
-./app/heartbeat.py &
-export HEARTBEAT_PID=$!
+# ./app/heartbeat.py &
+# export HEARTBEAT_PID=$!
+
+./app/stc/main.py $filename &
 
 wait
 

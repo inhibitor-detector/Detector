@@ -6,19 +6,21 @@
 # Install deps
 apt-get install libusb-1.0
 pip install --upgrade pip
-pip install requests
-pip install schedule
-pip install python-dotenv
+pip install -r requirements.txt
 
 # Install expect tool
 apt-get install -y expect
 
-# Install rfcat
-git clone https://github.com/atlas0fd00m/rfcat.git
-cd rfcat
-python3 setup.py install
-
-cd .. #return to /Tesis/app
+# Install rfcat if not installed
+if [[ "$output" != *"command not found"* ]]; then
+  echo "rfcat already installed"
+else
+  echo "Installing rfcat"
+  git clone https://github.com/atlas0fd00m/rfcat.git
+  cd rfcat
+  python3 setup.py install
+  cd ..
+fi
 
 #clean
 apt-get autoremove -y

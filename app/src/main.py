@@ -35,6 +35,6 @@ def check_params():
 
 if __name__ == '__main__':
     print("Starting...")
-    # check_params()
+    check_params()
 
     asyncio.run(run())

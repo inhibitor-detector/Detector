@@ -9,7 +9,6 @@ import time
 
 
 async def run():
-    # Initialize services
     print("Initializing services...")
 
     analyzer_service = AnalyzerService(constants.LOGS_FILE)
@@ -27,8 +26,8 @@ def check_params():
     if not os.path.isfile(constants.log_file):
         print(f"Error: The logs file '{constants.log_file}' does not exist.")
         sys.exit(1)
-    if 'RFCAT_PID' not in os.environ or 'ANALYZER_PID' not in os.environ:
-        print("One of the PID environment variables is not set.")
+    if 'RFCAT_PID' not in os.environ:
+        print("One of the RFCAT_PID environment variables is not set.")
         exit(1)
 
 if __name__ == '__main__':

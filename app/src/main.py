@@ -26,8 +26,8 @@ def check_params():
     if len(sys.argv)!= 2:
         print(f"Usage: {sys.argv[0]} <logs_file>")
         sys.exit(1)
-    if not os.path.isfile(constants.log_file):
-        print(f"Error: The logs file '{constants.log_file}' does not exist.")
+    if not os.path.isfile(constants.LOGS_FILE):
+        print(f"Error: The logs file '{constants.LOGS_FILE}' does not exist.")
         sys.exit(1)
     if 'RFCAT_PID' not in os.environ:
         print("One of the RFCAT_PID environment variables is not set.")

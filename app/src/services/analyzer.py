@@ -34,6 +34,8 @@ class AnalyzerService:
                     print("Inhibitor detected")
                     self.detector.post_inhibition_detected()
                 # TODO remove on prod:
+                elif "Access denied (insufficient permissions)" in line:
+                    print("Access denied detected, did you run with sudo?")
                 elif "exit()" in line:  # exit manually by dev or automatically when rfcat finishes
                     print("Exit detected")
                     self.is_running = False

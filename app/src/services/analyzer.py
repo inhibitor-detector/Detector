@@ -17,12 +17,16 @@ class AnalyzerService:
 
         print("Analyzer service initialized.")
 
-    def analyze(self):
+    def run(self):
+        while True:
+            self.check_logs()
+            time.sleep(1)
+    
+    def check_logs(self):
         last_modified = os.path.getmtime(self.logs_file)
         if last_modified > self.last_modified:
             self.last_modified = last_modified
             self.run_analysis()
-
     
     def run_analysis(self):
         print("Running Analyzer service...")

@@ -3,9 +3,11 @@ import subprocess
 import requests
 from config import constants
 # import jwt
+import asyncio
+import time
 
 class HeartbeatService:
-    def __init__(self):
+    def __init__(self, analyzer_job):
         print("Initializing Heartbeat service...")
         self.rfcat_pid = constants.RFCAT_PID
         self.analyzer_pid = constants.ANALYZER_PID
@@ -13,13 +15,17 @@ class HeartbeatService:
         self.is_analyzer_running = False
         self.api_endpoint = constants.API_URL
         self.authorization = constants.USER + ":" + constants.PASSWORD
+        self.analyzer_job = analyzer_job
         # self.id = self.getId()
         
 
     def beat(self):
-        print("Heart beating...")
-        # self.check_rfcat()
-        # self.check_analyzer()
+        while True:
+            self.check_analyzer()
+            # self.check_rfcat()
+            print("Heart beating...")
+            time.sleep(1)
+        # self.is_analyzer_running_func(self.analyzer_job_id)
         # self.post_request()
     
     def check_rfcat(self):
@@ -32,8 +38,7 @@ class HeartbeatService:
             self.is_analyzer_running = False
     
     def check_analyzer(self):
-        analyzer_process = subprocess.run(['ps', '-p', self.analyzer_pid], stdout=subprocess.PIPE)
-        if analyzer_process.stdout.decode().strip():
+        if self.analyzer_job.is_alive():
             print("ANALYZER is running.")
             self.is_analyzer_running = True
         else:
@@ -49,6 +54,17 @@ class HeartbeatService:
             auth=('username', 'password')
         )
         print(response.status_code) 
+
+    # Check if a specific schedule is running
+    def is_analyzer_running_func(self, schedule_id):
+        jobs = schedule.get_jobs()
+        for job in jobs:
+            if job.id == schedule_id:
+                print("Analyzer is running in job: ", job)
+                return True
+        print("Analyzer is not running.")
+        return False
+
 
     # def get_id(self): #TODO verify this works
     #     response = requests.get(

@@ -3,27 +3,22 @@ import asyncio
 from services.analyzer import AnalyzerService
 from services.heartbeat import HeartbeatService
 import os
-import schedule
 from config import constants
+import threading
+import time
 
 
 async def run():
     # Initialize services
     print("Initializing services...")
-    
+
     analyzer_service = AnalyzerService(constants.LOGS_FILE)
-    (schedule.every(1).seconds
-     .do(analyzer_service.analyze))
+    analyzer_thread = threading.Thread(target=analyzer_service.run)
+    analyzer_thread.start()
 
-    heartbeat_service = HeartbeatService()
-    (schedule.every(2).seconds
-     .do(heartbeat_service.beat))
-    
-    schedule.run_all()
-
-    while True:
-        schedule.run_pending()
-        await asyncio.sleep(1)
+    heartbeat_service = HeartbeatService(analyzer_thread)
+    job_thread = threading.Thread(target=heartbeat_service.beat)
+    job_thread.start()
 
 def check_params():
     if len(sys.argv)!= 2:

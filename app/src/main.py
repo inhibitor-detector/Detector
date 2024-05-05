@@ -6,16 +6,19 @@ import os
 from config import constants
 import threading
 import time
+from models.detector import Detector
 
 
 async def run():
+    print("Initializing detector...")
+    detector = Detector()
+    
     print("Initializing services...")
-
-    analyzer_service = AnalyzerService(constants.LOGS_FILE)
+    analyzer_service = AnalyzerService(detector, constants.LOGS_FILE)
     analyzer_thread = threading.Thread(target=analyzer_service.run)
     analyzer_thread.start()
 
-    heartbeat_service = HeartbeatService(analyzer_thread)
+    heartbeat_service = HeartbeatService(detector, analyzer_thread)
     job_thread = threading.Thread(target=heartbeat_service.beat)
     job_thread.start()
 

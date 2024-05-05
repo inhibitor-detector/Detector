@@ -5,15 +5,14 @@ import json
 
 class Detector:
     def __init__(self):
-        print("Initializing Detector..")
         self.api_endpoint = constants.API_URL
-        self.authorization = constants.USER + ":" + constants.PASSWORD
+        self.basic_authorization = (constants.USER, constants.PASSWORD)
         self.rfcat_pid = constants.RFCAT_PID
         self.bearer_token = None
         self.refresh_token = None
         self.expires_in = None
         self.last_token_timestamp = None
-        self.id = self.getId()
+        self.id = self.get_id()
         print("Detector initialized.")
 
     def post_heartbeat(self, rfcat_failed, analyzer_failed):
@@ -51,7 +50,7 @@ class Detector:
             self.api_endpoint + url,
             headers=headers, #{'Content-Type': 'application/json',
             data=data, #'{"key": "value"}'
-            auth=Authorization()
+            auth=self.get_authorization()
         )
         self.extract_token(response)
         print(response.status_code) 
@@ -60,30 +59,29 @@ class Detector:
         response = requests.get(
             self.api_endpoint,
             headers={'Content-Type': 'application/json'},
-            auth=Authorization()
+            auth=self.get_authorization()
         )
         if response.status_code != 200:
             print("Error getting Detector ID")
             return -1
         self.extract_token(response)
-        return response.json().get('id')
+        # return response.text.get('id') #TODO implement
+        return 1
     
-    # TODO: check if the following works
     def extract_token(self, response):
         if response.status_code != 200:
             print("Error extracting tokens from request")
             return -1
-        parsed_json = json.loads(response.text)
-        self.bearer_token = parsed_json.get('access_token')
-        self.refresh_token = parsed_json.get('refresh_token')
-        self.expires_in = parsed_json.get('expires_in')
+        self.bearer_token = response.headers.get('access_token')
+        self.refresh_token = response.headers.get('refresh_token')
+        self.expires_in = response.headers.get('expires_in')
         self.last_token_timestamp = time.time()
 
-
-class Authorization(requests.auth.AuthBase):
-    def __init__(self, ):
-        self.basic = (constants.USER, constants.PASSWORD)
-        self.token = None #TODO implement JWT handling
-
-    def __call__(self, r):
-        return self.basic
+    def get_authorization(self):
+        if self.bearer_token is None:
+            return self.basic_authorization
+        if self.refresh_token is None:
+            return self.basic_authorization
+        if time.time() - self.last_token_timestamp > self.expires_in:
+            return self.refresh_token
+        return self.bearer_token

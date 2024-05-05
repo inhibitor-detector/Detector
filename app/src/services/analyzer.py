@@ -39,28 +39,3 @@ class AnalyzerService:
                     self.is_running = False
 
                 self.last_line_number_read += 1 #update read position
-
-
-
-# class LogFileHandler(FileSystemEventHandler):
-#     def __init__(self, logs_file):
-#         # self.logs_file = logs_file
-#         # self.last_line_number = 0
-#         # self.is_running = True
-
-#     def on_modified(self, event):
-        # with open(self.logs_file, 'r') as file:
-        #     new_lines = file.readlines()[self.last_line_number:]  # Read from last read, up to the end
-        #     for line in new_lines:
-        #         # Perform simple analysis on each line
-        #         if "ffffff" in line:
-        #             print("Inhibitor detected")
-        #             # curl xxx
-        #             # TODO make a post here with requests or something cheto
-        #             response = requests.get("http://wttr.in")
-        #             print(response)
-        #         elif "exit()" in line:  # exit manually by dev or automatically when rfcat finishes
-        #             print("Exit detected")
-        #             self.is_running = False
-
-        #         self.last_line_number += 1

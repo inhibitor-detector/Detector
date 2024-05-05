@@ -14,18 +14,18 @@ class HeartbeatService:
         self.rfcat_is_running = False
         self.analyzer_is_running = False
         self.analyzer_job = analyzer_job
-        
 
     def beat(self):
         while True:
             print("Heart beating...")
             self.check_analyzer()
-            self.check_rfcat()
+            # self.check_rfcat()
             self.detector.post_heartbeat(self.rfcat_is_running, self.analyzer_is_running)
             time.sleep(1)
     
+    #TODO check if this works
     def check_rfcat(self):
-        rfcat_process = subprocess.run(['ps', '-p', self.rfcat_pid], stdout=subprocess.PIPE)
+        rfcat_process = subprocess.run(['ps', '-p', self.detector.rfcat_pid], stdout=subprocess.PIPE)
         if rfcat_process.stdout.decode().strip():
             print("RFCAT is running.")
             self.rfcat_is_running = True

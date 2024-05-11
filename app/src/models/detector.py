@@ -46,7 +46,7 @@ class Detector:
         return data
 
     def post(self, url, data):
-        print("posting data: " + data)
+        print("posting data: " + str(data))
         print("posting auth: " + self.get_authorization())
         headers={'Content-Type': 'application/json', 'Authorization': self.get_authorization()}
         response = requests.post(

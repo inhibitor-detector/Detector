@@ -7,8 +7,8 @@ import base64
 class Detector:
     def __init__(self):
         self.api_endpoint = constants.API_URL
-        basic_auth_string = "Basic " + "{constants.USER}" + ":" + "{constants.PASSWORD}"
-        self.basic_authorization = base64.b64encode(basic_auth_string.encode('utf-8')).decode('utf-8')
+        basic_auth_string = "{constants.USER}" + ":" + "{constants.PASSWORD}"
+        self.basic_authorization = "Basic " + base64.b64encode(basic_auth_string.encode('utf-8')).decode('utf-8')
         self.rfcat_pid = constants.RFCAT_PID
         self.bearer_token = None
         self.refresh_token = None

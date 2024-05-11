@@ -52,7 +52,7 @@ class Detector:
         response = requests.post(
             self.api_endpoint + url,
             headers=headers, #{'Content-Type': 'application/json',
-            data=data, #'{"key": "value"}'
+            data=str(data), #'{"key": "value"}'
             auth=self.get_authorization()
         )
         self.handle_response(response)

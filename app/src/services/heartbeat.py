@@ -19,7 +19,7 @@ class HeartbeatService:
         while True:
             print("Heart beating...")            
             self.detector.post_heartbeat(self.check_rfcat(), self.check_analyzer())
-            time.sleep(1)
+            time.sleep(10)
     
     #TODO check if this works
     def check_rfcat(self):

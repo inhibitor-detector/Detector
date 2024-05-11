@@ -55,7 +55,7 @@ class Detector:
     def generate_data(self, isHeartbeat, failed=False, rfcat_failed=False, analyzer_failed=False):
 
         data = {
-                    "timestamp": datetime.now().isoformat(), # TODO ISO_LOCAL_DATE_TIME format!
+                    "timestamp": datetime.now().isoformat(),
                     "detectorId": self.id,
                     "isHeartbeat": isHeartbeat
                 }

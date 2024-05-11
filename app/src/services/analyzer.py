@@ -30,10 +30,10 @@ class AnalyzerService:
             new_lines = file.readlines()[self.last_line_number_read:]  # Read from last read, up to the end
             for line in new_lines:
                 # Perform simple analysis on each line
+                # TODO a bit more complex analysis to post less inhibitions found
                 if "ffffffffff" in line:
                     print("Inhibitor detected")
                     self.detector.post_inhibition_detected()
-                # TODO remove on prod:
                 elif "Access denied (insufficient permissions)" in line:
                     print("Access denied detected, did you run with sudo?")
                 elif "exit()" in line:  # exit manually by dev or automatically when rfcat finishes

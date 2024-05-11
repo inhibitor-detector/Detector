@@ -39,7 +39,7 @@ class Detector:
                     "detectorId": self.id,
                     "isHeartbeat": isHeartbeat
                 }
-        if failed:
+        if failed: #TODO add to API
             data["failed"] = failed
             data["rfcatFailed"] = rfcat_failed
             data["analyzerFailed"] = analyzer_failed

@@ -27,7 +27,6 @@ class HeartbeatService:
     def check_rfcat(self):
         rfcat_process = subprocess.run(['ps', '-p', self.detector.rfcat_pid], stdout=subprocess.PIPE)
         if rfcat_process.stdout.decode().strip():
-            print("RFCAT is running.")
             self.rfcat_is_running = True
         else:
             print("RFCAT is not running.")

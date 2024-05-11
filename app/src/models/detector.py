@@ -23,15 +23,13 @@ class Detector:
             print("Posting a failed heartbeat failed...")
             data = self.generate_data(isHeartbeat=True, failed=True, rfcat_failed = not is_rfcat_running, analyzer_failed = not is_analyzer_running)
         url = '/signals'
-        headers={'Content-Type': 'application/json'}
-        self.post(url, headers, data)
+        self.post(url, data)
 
     def post_inhibition_detected(self):
         print("Posting inhibition detected...")
         url = '/signals'
-        headers={'Content-Type': 'application/json'}
         data = self.generate_data(isHeartbeat=False)
-        self.post(url, headers, data)
+        self.post(url, data)
 
     def generate_data(self, isHeartbeat, failed=False, rfcat_failed=False, analyzer_failed=False):
         data = {
@@ -45,26 +43,35 @@ class Detector:
             data["analyzerFailed"] = analyzer_failed
         return data
 
-    def post(self, url, headers, data):
+    def post(self, url, data):
+        headers={'Content-Type': 'application/json', 'Authorization': self.get_authorization()}
         response = requests.post(
             self.api_endpoint + url,
             headers=headers, #{'Content-Type': 'application/json',
             data=data, #'{"key": "value"}'
             auth=self.get_authorization()
         )
+        self.handle_response(response)
+    
+    def handle_response(self, response):
+        print(response.status_code)
+        if response.status_code == 401:
+            print("401 Unauthorized")
+            # TODO try again with basic auth
+            return
+        if response.status_code == 200:
+            print("200 OK")
+        if response.status_code == 201:
+            print("201 Created")
         self.extract_token(response)
-        print(response.status_code) 
 
     def get_id(self): #TODO verify this works
+        headers={'Content-Type': 'application/json', 'Authorization': self.get_authorization()}
         response = requests.get(
             self.api_endpoint,
-            headers={'Content-Type': 'application/json'},
-            auth=self.get_authorization()
+            headers=headers,
         )
-        if response.status_code != 200:
-            print("Error getting Detector ID")
-            return -1
-        self.extract_token(response)
+        self.handle_response(response)
         # return response.text.get('id') #TODO implement
         return 1
     
@@ -80,8 +87,6 @@ class Detector:
     def get_authorization(self):
         if self.bearer_token is None:
             return self.basic_authorization
-        if self.refresh_token is None:
-            return self.basic_authorization
         if time.time() - self.last_token_timestamp > self.expires_in:
-            return self.refresh_token
+            return self.basic_authorization
         return self.bearer_token

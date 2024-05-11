@@ -2,11 +2,13 @@ from config import constants
 import requests
 import time
 import json
+import base64
 
 class Detector:
     def __init__(self):
         self.api_endpoint = constants.API_URL
-        self.basic_authorization = (constants.USER, constants.PASSWORD)
+        basic_auth_string = "Basic " + "{constants.USER}" + ":" + "{constants.PASSWORD}"
+        self.basic_authorization = base64.b64encode(basic_auth_string.encode('utf-8')).decode('utf-8')
         self.rfcat_pid = constants.RFCAT_PID
         self.bearer_token = None
         self.refresh_token = None
@@ -44,6 +46,8 @@ class Detector:
         return data
 
     def post(self, url, data):
+        print("posting data: " + data)
+        print("posting auth: " + self.get_authorization())
         headers={'Content-Type': 'application/json', 'Authorization': self.get_authorization()}
         response = requests.post(
             self.api_endpoint + url,

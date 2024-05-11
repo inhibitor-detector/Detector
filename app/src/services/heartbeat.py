@@ -17,10 +17,8 @@ class HeartbeatService:
 
     def beat(self):
         while True:
-            print("Heart beating...")
-            self.check_analyzer()
-            self.check_rfcat()
-            self.detector.post_heartbeat(self.rfcat_is_running, self.analyzer_is_running)
+            print("Heart beating...")            
+            self.detector.post_heartbeat(self.check_rfcat(), self.check_analyzer())
             time.sleep(1)
     
     #TODO check if this works
@@ -31,6 +29,7 @@ class HeartbeatService:
         else:
             print("RFCAT is not running.")
             self.rfcat_is_running = False
+        return self.rfcat_is_running
     
     def check_analyzer(self):
         if self.analyzer_job.is_alive():
@@ -38,3 +37,4 @@ class HeartbeatService:
         else:
             print("ANALYZER is not running.")
             self.analyzer_is_running = False
+        return self.analyzer_is_running

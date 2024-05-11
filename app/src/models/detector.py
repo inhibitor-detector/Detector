@@ -15,13 +15,13 @@ class Detector:
         self.id = self.get_id()
         print("Detector initialized.")
 
-    def post_heartbeat(self, rfcat_failed, analyzer_failed):
-        if rfcat_failed or analyzer_failed:
-            print("Posting a failed heartbeat failed...")
-            data = self.generate_data(isHeartbeat=True, failed=True, rfcat_failed=rfcat_failed, analyzer_failed=analyzer_failed)
-        else:
+    def post_heartbeat(self, is_rfcat_running, is_analyzer_running):
+        if is_rfcat_running and is_analyzer_running:
             print("Posting a successfull heartbeat...")
             data = self.generate_data(isHeartbeat=True)
+        else:
+            print("Posting a failed heartbeat failed...")
+            data = self.generate_data(isHeartbeat=True, failed=True, rfcat_failed = not is_rfcat_running, analyzer_failed = not is_analyzer_running)
         url = '/signals'
         headers={'Content-Type': 'application/json'}
         self.post(url, headers, data)

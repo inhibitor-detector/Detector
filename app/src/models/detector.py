@@ -1,13 +1,29 @@
+# import os
+# import sys
+# # from dotenv import load_dotenv
+
+# # load_dotenv()
+
+# USER="det_1_cliente_1"
+# PASSWORD="12345678"
+# API_URL="http://192.168.0.234:8000"
+
+
+
 from config import constants
 import requests
 import time
 import json
 import base64
+import jwt
+from datetime import datetime
 
 class Detector:
     def __init__(self):
+        # self.api_endpoint = API_URL
         self.api_endpoint = constants.API_URL
-        basic_auth_string = "{constants.USER}" + ":" + "{constants.PASSWORD}"
+        # basic_auth_string = f"{USER}:{PASSWORD}"
+        basic_auth_string = f"{constants.USER}:{constants.PASSWORD}"
         self.basic_authorization = "Basic " + base64.b64encode(basic_auth_string.encode('utf-8')).decode('utf-8')
         self.rfcat_pid = constants.RFCAT_PID
         self.bearer_token = None
@@ -34,11 +50,13 @@ class Detector:
         self.post(url, data)
 
     def generate_data(self, isHeartbeat, failed=False, rfcat_failed=False, analyzer_failed=False):
+
         data = {
-                    "timestamp": time.time(), # TODO ISO_LOCAL_DATE_TIME format!
+                    "timestamp": datetime.now().isoformat(), # TODO ISO_LOCAL_DATE_TIME format!
                     "detectorId": self.id,
                     "isHeartbeat": isHeartbeat
                 }
+        data = json.dumps(data)
         if failed: #TODO add to API
             data["failed"] = failed
             data["rfcatFailed"] = rfcat_failed
@@ -46,19 +64,20 @@ class Detector:
         return data
 
     def post(self, url, data):
-        print("posting data: " + str(data))
+        print("posting data: ")
+        print(data)
         print("posting auth: " + self.get_authorization())
         headers={'Content-Type': 'application/json', 'Authorization': self.get_authorization()}
         response = requests.post(
             self.api_endpoint + url,
-            headers=headers, #{'Content-Type': 'application/json',
-            data=str(data), #'{"key": "value"}'
-            auth=self.get_authorization()
+            headers=headers,
+            data=data,
         )
         self.handle_response(response)
     
     def handle_response(self, response):
         print(response.status_code)
+        print(response.text)
         if response.status_code == 401:
             print("401 Unauthorized")
             # TODO try again with basic auth
@@ -69,28 +88,33 @@ class Detector:
             print("201 Created")
         self.extract_token(response)
 
-    def get_id(self): #TODO verify this works
+    def get_id(self):
         headers={'Content-Type': 'application/json', 'Authorization': self.get_authorization()}
         response = requests.get(
             self.api_endpoint,
             headers=headers,
         )
         self.handle_response(response)
-        # return response.text.get('id') #TODO implement
+        # return response.text.get('id') #TODO implement, get from bearer token
         return 1
     
     def extract_token(self, response):
-        if response.status_code != 200:
-            print("Error extracting tokens from request")
-            return -1
-        self.bearer_token = response.headers.get('access_token')
-        self.refresh_token = response.headers.get('refresh_token')
-        self.expires_in = response.headers.get('expires_in')
+        self.bearer_token = response.headers.get('Authorization')
+        # self.expires_in = response.headers.get('expires_in') #TODO extract from bearer token
         self.last_token_timestamp = time.time()
+        # print("Bearer token: " + self.bearer_token)
+        # print("Expires in: " + self.expires_in)
+        # print("Last token timestamp: " + str(self.last_token_timestamp))
+
 
     def get_authorization(self):
         if self.bearer_token is None:
             return self.basic_authorization
-        if time.time() - self.last_token_timestamp > self.expires_in:
-            return self.basic_authorization
+        # if time.time() - self.last_token_timestamp > self.expires_in:
+        #     return self.basic_authorization
         return self.bearer_token
+
+if __name__ == "__main__":
+    detector = Detector()
+    detector.post_heartbeat(True, True)
+    detector.post_inhibition_detected()

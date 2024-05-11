@@ -4,7 +4,7 @@
 
 # # load_dotenv()
 
-# USER="det_1_cliente_1"
+# DETECTOR_USER="det_1_cliente_1"
 # PASSWORD="12345678"
 # API_URL="http://192.168.0.234:8000"
 
@@ -22,8 +22,8 @@ class Detector:
     def __init__(self):
         # self.api_endpoint = API_URL
         self.api_endpoint = constants.API_URL
-        # basic_auth_string = f"{USER}:{PASSWORD}"
-        basic_auth_string = f"{constants.USER}:{constants.PASSWORD}"
+        # basic_auth_string = f"{DETECTOR_USER}:{PASSWORD}"
+        basic_auth_string = f"{constants.DETECTOR_USER}:{constants.PASSWORD}"
         print(basic_auth_string)
         self.basic_authorization = "Basic " + base64.b64encode(basic_auth_string.encode('utf-8')).decode('utf-8')
         print(self.basic_authorization)

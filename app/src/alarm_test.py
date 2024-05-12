@@ -1,9 +1,16 @@
 import RPi.GPIO as GPIO
-from gpiozero import Buzzer
+# from gpiozero import Buzzer
 import time
 
 pin_number = 1
-buzzer = Buzzer (pin_number) 
-buzzer.on()
-time.sleep(2)
-buzzer.off()
+
+# Set up GPIO
+GPIO.setmode(GPIO.BCM)  # Use Broadcom pin numbering
+GPIO.setup(pin_number, GPIO.OUT)  # Set GPIO 18 as output
+
+def play_beep():
+    GPIO.output(pin_number, True)  # Turn on the speaker
+    time.sleep(1)  # Play the beep for 100ms
+    GPIO.output(pin_number, False)  # Turn off the speaker
+
+play_beep()

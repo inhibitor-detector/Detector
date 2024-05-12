@@ -10,6 +10,7 @@ class AnalyzerService:
         self.last_modified_time = os.path.getmtime(self.logs_file)
         self.last_line_number_read = 0
         self.inhibiton_detected = False
+        self.rfcat_has_exited = False
         print("Analyzer service initialized.")
 
     def run(self):
@@ -61,8 +62,8 @@ class AnalyzerService:
                         print(line)
 
                 elif "exit()" in line:  # exit manually by dev or automatically when rfcat finishes
-                    print("Exit detected") #TODO make better
-                    self.is_running = False
+                    print("Exit detected") #TODO wip make better
+                    self.rfcat_has_exited = True
 
             self.last_line_number_read += 1 #update read position
 
@@ -73,6 +74,9 @@ class AnalyzerService:
         print("Posting inhibition detected...")
         post_detection = threading.Thread(target=self.detector.post_inhibition_detected)
         post_detection.start()
+
+    def has_rfcat_exited(self):
+        return self.rfcat_has_exited
 
 
 if __name__ == "__main__":

@@ -8,12 +8,13 @@ import time
 from models import detector
 
 class HeartbeatService:
-    def __init__(self, detector, analyzer_job):
+    def __init__(self, detector, analyzer_job, analyzer_service):
         print("Initializing Heartbeat service...")
         self.detector = detector
         self.rfcat_is_running = False
         self.analyzer_is_running = False
         self.analyzer_job = analyzer_job
+        self.analyzer_service = analyzer_service
 
     def beat(self):
         while True:
@@ -23,11 +24,14 @@ class HeartbeatService:
     
     #TODO check if this works
     def check_rfcat(self):
+        print("checking rfcat, pid: ", self.detector.rfcat_pid)
         rfcat_process = subprocess.run(['ps', '-p', self.detector.rfcat_pid], stdout=subprocess.PIPE)
         if rfcat_process.stdout.decode().strip():
             self.rfcat_is_running = True
         else:
             print("RFCAT is not running.")
+            self.rfcat_is_running = False
+        if self.analyzer_service.has_rfcat_exited(): #another way of checking if rfcat has exited
             self.rfcat_is_running = False
         return self.rfcat_is_running
     

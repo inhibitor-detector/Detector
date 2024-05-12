@@ -22,18 +22,17 @@ class HeartbeatService:
             self.detector.post_heartbeat(self.check_rfcat(), self.check_analyzer())
             time.sleep(10)
     
-    #TODO check if this works
     def check_rfcat(self):
         print("checking rfcat, pid: ", self.detector.rfcat_pid)
         try:
-            os.kill(self.detector.rfcat_pid, 0) #does not kill the process, don't worry
-        except OSError:
+            os.kill(self.detector.rfcat_pid, 0) # Does not kill the process, don't worry
+        except OSError:                         # It only checks if PID is running
             print("RFCAT is not running.")
             self.rfcat_is_running = False
         else:
             self.rfcat_is_running = True
 
-        if self.analyzer_service.has_rfcat_exited(): #another way of checking if rfcat has exited
+        if self.analyzer_service.has_rfcat_exited(): # For redundancy
             self.rfcat_is_running = False
         return self.rfcat_is_running
     

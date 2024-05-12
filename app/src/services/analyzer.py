@@ -34,14 +34,11 @@ class AnalyzerService:
             #then close the file so the is no concurrency problems, or stuck-reading problems. There never has beem but just in case
         for line in new_lines:
             if not self.inhibiton_detected:
-                if "ffffffffff" in line: # TODO a bit more complex analysis to post less inhibitions found
+                if "ffffffffff" in line:
                     print("Inhibitor detected")
                     self.inhibiton_detected = True
                     self.post_inhibition_detected()
                     #i want to run the post on another thread so i can continue reading the file
-                    #after posting on another thread, i want to ignore
-                        #inhibitors detected in same batch
-                        #inhibitors detected for x time
 
                 elif "Error" in line:
                     print("Error detected:")
@@ -65,8 +62,8 @@ class AnalyzerService:
                         print("Unknown error:")
                         print(line)
 
-                elif "exit()" in line:  # exit manually by dev or automatically when rfcat finishes
-                    print("Exit detected") #TODO wip make better
+                elif "exit()" in line:  # exit manually by dev or automatically if rfcat finished by expect.sh
+                    print("rfcat exit() detected")
                     self.rfcat_has_exited = True
 
             self.last_line_number_read += 1 #update read position

@@ -56,6 +56,10 @@ class AnalyzerService:
                     elif "USBTimeoutError" in line:
                         print("USBTimeoutError")
                         print("YARD exited with error last time, unplug and plug it back in")
+
+                    elif "falling back to straight Python..." in line:
+                        print("Falling back to straight Python")
+                        print("You can ignore this error")
                     
                     else:
                         print("Unknown error:")

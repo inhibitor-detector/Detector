@@ -17,7 +17,7 @@ export RFCAT_PID=$!
 
 python ./app/src/main.py $filename &
 
-wait
+# wait # TODO this does busy waiting i think
 
-echo "done, bye!"
+echo "done starting, enjoy!"
 exit

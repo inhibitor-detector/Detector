@@ -21,7 +21,7 @@ expect "(Press Enter to quit)\r"
 #     send "do_something_else\r"
 # }
 
-sleep 60
+sleep 600
 
 send "\r"
 expect "Exiting Discover mode...\r\n>>> "

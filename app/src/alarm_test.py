@@ -1,40 +1,27 @@
 import time
 import RPi.GPIO as GPIO
-from gpiozero import Buzzer
-from gpiozero import TonalBuzzer
-from gpiozero.tones import Tone
+import board
+import pwmio
 
-pin_number = 1
+tone = pwmio.PWMOut(board.GP15, variable_frequency=True)
+volume = 500
+tone.duty_cycle = volume
 
-# # Set up GPIO
-# GPIO.setmode(GPIO.BCM)  # Use Broadcom pin numbering
-# GPIO.setup(pin_number, GPIO.OUT)  # Set GPIO pin_number as output
+notes = [262, 277, 294, 311, 330, 349, 370, 392, 415, 440, 466, 494, 523]
+tone_duration = 0.5
+rest_duration = 0.1
 
-# while True:
-#     print("Beep")
-#     GPIO.output(pin_number, True)  # Turn on the speaker
-#     time.sleep(1)  # Play the beep for 100ms
-#     GPIO.output(pin_number, False)  # Turn off the speaker
+def play_a_tone(freq, duration):
+    tone.duty_cycle = volume
+    tone.frequency = freq
+    time.sleep(duration)
 
-bz = Buzzer(pin_number)
-bz.on()
-while True:
-    print("Beep")
-    bz.beep()
-    time.sleep(1)
+def play_a_rest(duration):
+    tone.duty_cycle = 0
+    time.sleep(duration)
 
-
-
-bz = TonalBuzzer(pin_number)
-
-b.play(Tone("A4"))
-
-b.play(Tone(220.0)) # Hz
-
-b.play(Tone(60)) # middle C in MIDI notation
-
-b.play("A4")
-
-b.play(220.0)
-
-b.play(60)
+for note in notes:
+    print("playing ", note)
+    play_a_tone(note, tone_duration)
+    play_a_rest(rest_duration)
+    

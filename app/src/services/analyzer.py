@@ -55,6 +55,10 @@ class AnalyzerService:
                     elif "USBTimeoutError" in line:
                         print("USBTimeoutError")
                         print("YARD exited with error last time, unplug and plug it back in")
+                    
+                    else:
+                        print("Unknown error:")
+                        print(line)
 
                 elif "exit()" in line:  # exit manually by dev or automatically when rfcat finishes
                     print("Exit detected") #TODO make better

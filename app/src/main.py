@@ -30,7 +30,7 @@ def check_params():
         print(f"Error: The logs file '{constants.LOGS_FILE}' does not exist.")
         sys.exit(1)
     if 'RFCAT_PID' not in os.environ:
-        print("One of the RFCAT_PID environment variables is not set.")
+        print("RFCAT_PID environment variables is not set.")
         exit(1)
 
 if __name__ == '__main__':

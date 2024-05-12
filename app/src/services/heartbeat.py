@@ -25,12 +25,14 @@ class HeartbeatService:
     #TODO check if this works
     def check_rfcat(self):
         print("checking rfcat, pid: ", self.detector.rfcat_pid)
-        rfcat_process = subprocess.run(['ps', '-p', self.detector.rfcat_pid], stdout=subprocess.PIPE)
-        if rfcat_process.stdout.decode().strip():
-            self.rfcat_is_running = True
-        else:
+        try:
+            os.kill(self.detector.rfcat_pid, 0) #does not kill the process, don't worry
+        except OSError:
             print("RFCAT is not running.")
             self.rfcat_is_running = False
+        else:
+            self.rfcat_is_running = True
+
         if self.analyzer_service.has_rfcat_exited(): #another way of checking if rfcat has exited
             self.rfcat_is_running = False
         return self.rfcat_is_running

@@ -42,12 +42,19 @@ class AnalyzerService:
                         #inhibitors detected in same batch
                         #inhibitors detected for x time
 
-                elif "Access denied (insufficient permissions)" in line:
-                    print("Access denied detected, did you run with sudo?")
+                elif "Error" in line:
+                    print("Error detected")
+                    if "Access denied (insufficient permissions)" in line:
+                        print("Access denied")
+                        print("Did you run with sudo?")
 
-                # elif "" in line:
-                #     print(" detected, is the YARD plugged in?")
-                #     print("Try unplugging and plugging it back in")
+                    elif "No Dongle Found" in line:
+                        print("No Dongle Found")
+                        print("Is the YARD plugged in?")
+                    
+                    elif "USBTimeoutError" in line:
+                        print("USBTimeoutError")
+                        print("YARD exited with error last time, unplug and plug it back in")
 
                 elif "exit()" in line:  # exit manually by dev or automatically when rfcat finishes
                     print("Exit detected") #TODO make better

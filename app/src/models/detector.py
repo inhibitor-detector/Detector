@@ -75,6 +75,7 @@ class Detector:
         self.extract_token(response)
 
     def get_id(self):
+        print("Getting detector ID...")
         headers={'Content-Type': 'application/json', 'Authorization': self.get_authorization(must_use_basic=True)}
         response = requests.get(
             self.api_endpoint,

@@ -44,7 +44,7 @@ class AnalyzerService:
                         #inhibitors detected for x time
 
                 elif "Error" in line:
-                    print("Error detected")
+                    print("Error detected:")
                     if "Access denied (insufficient permissions)" in line:
                         print("Access denied")
                         print("Did you run with sudo?")

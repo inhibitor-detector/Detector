@@ -8,6 +8,7 @@ touch "$filename"
 # ./auto_rfcat.sh | tee "$filename" &
 ./app/auto_rfcat.sh >> "$filename" &
 export RFCAT_PID=$!
+echo "rfcat started"
 
 # ./app/analyzer.py $filename &
 # export ANALYZER_PID=$!
@@ -16,6 +17,7 @@ export RFCAT_PID=$!
 # export HEARTBEAT_PID=$!
 
 python ./app/src/main.py $filename &
+echo "python main started"
 
 # wait # TODO this does busy waiting i think
 

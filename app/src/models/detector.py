@@ -11,7 +11,7 @@ class Detector:
         self.api_endpoint = constants.API_URL
         basic_auth_string = f"{constants.DETECTOR_USER}:{constants.PASSWORD}"
         self.basic_authorization = "Basic " + base64.b64encode(basic_auth_string.encode('utf-8')).decode('utf-8')
-        self.rfcat_pid = constants.RFCAT_PID
+        self.rfcat_pid = int(constants.RFCAT_PID)
         self.bearer_token = None
         self.expires_in = None
         self.last_token_timestamp = None

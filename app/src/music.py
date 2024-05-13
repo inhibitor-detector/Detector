@@ -38,9 +38,9 @@ C4_SHARP = 277.18
 C4 = 261.63
 B3 = 246.94
 
-# tempo = 0.203125
+tempo = 0.203125
 
-tempo = 0.545
+# tempo = 0.545
 
 tetris_song = [
     (E5, 2*tempo), (B4, tempo), (C5, tempo), (D5, 2*tempo), (C5, tempo), (B4, tempo), (A4, 2*tempo), (A4, tempo), (C5, tempo), (E5, 2*tempo), (D5, tempo), (C5, tempo), (B4, 3*tempo), (C5, tempo), (D5, 2*tempo), (E5, 2*tempo), (C5, 2*tempo), (A4, 2*tempo), (A4, tempo), (A4, tempo), (B4, tempo), (C5, tempo), (D5, 3*tempo), (F5, tempo), (A5, 2*tempo), (G5, tempo), (F5, tempo), (E5, 3*tempo), (C5, tempo), (E5, 2*tempo), (D5, tempo), (C5, tempo), (B4, 2*tempo), (B4, tempo), (C5, tempo), (D5, 2*tempo), (E5, 2*tempo), (C5, 2*tempo), (A4, 2*tempo), (A4, 2*tempo)

@@ -46,8 +46,9 @@ star_wars_song = [
 ]
 
 himno_argentino = [
-    (A4, tempo), (A4, tempo), (B4, tempo), (C5, 2*tempo), (C5, tempo), (B4, tempo), (A4, 2*tempo), (G4, tempo), (G4, tempo), (A4, tempo), (A4, tempo), (B4, tempo), (C5, 2*tempo), (C5, tempo), (B4, tempo), (A4, 2*tempo), (G4, tempo), (A4, tempo), (A4, tempo), (B4, tempo), (C5, 2*tempo), (C5, tempo), (D5, tempo), (C5, tempo), (B4, tempo), (A4, 2*tempo), (G4, tempo), (F4, tempo), (F4, tempo), (G4, tempo), (A4, 2*tempo), (A4, tempo), (A4, tempo), (A4, tempo), (B4, 2*tempo), (A4, tempo), (G4, tempo), (A4, 2*tempo), (B4, tempo), (C5, tempo), (D5, 2*tempo), (C5, tempo), (B4, tempo), (A4, 2*tempo), (G4, tempo), (F4, tempo), (G4, tempo), (A4, 2*tempo), (A4, tempo), (A4, tempo), (A4, tempo), (G4, 2*tempo), (G4, tempo), (A4, tempo), (B4, 2*tempo), (A4, tempo), (G4, tempo), (F4, 2*tempo)
+    (F4, tempo), (E4, tempo), (F4, tempo), (G4, tempo), (G4, tempo), (A4, tempo), (A4, tempo), (G4, tempo), (F4, tempo), (F4, tempo), (E4, tempo), (E4, tempo), (D4, tempo), (D4, tempo), (C4, tempo), (C4, tempo), (B3, tempo), (B3, tempo), (C4, tempo), (C4, tempo), (D4, tempo), (E4, tempo), (E4, tempo), (F4, tempo), (F4, tempo), (G4, tempo), (G4, tempo), (A4, tempo), (A4, tempo), (G4, tempo), (F4, tempo), (F4, tempo), (E4, tempo), (E4, tempo), (D4, tempo), (D4, tempo), (C4, tempo), (C4, tempo), (B3, tempo), (B3, tempo), (C4, tempo), (C4, tempo), (D4, tempo), (E4, tempo), (D4, tempo), (C4, tempo), (B3, tempo)
 ]
+
 
 
 

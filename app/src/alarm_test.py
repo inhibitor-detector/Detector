@@ -1,16 +1,22 @@
 import time
 import RPi.GPIO as GPIO
-import board
+# import board
 
-tone = GPIO.PWM(board.GP15, 440)#variable_frequency=True)
+pin_number = 8
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(pin_number, GPIO.OUT)
+
+tone = GPIO.PWM(pin_number, 440)
 volume = 99
 # tone.duty_cycle = volume
 
 tone.start(volume)
 
-time.sleep(10)
+input('Press return to stop:')
 
 tone.stop()
+GPIO.cleanup()
 
 # notes = [262, 277, 294, 311, 330, 349, 370, 392, 415, 440, 466, 494, 523]
 # tone_duration = 0.5

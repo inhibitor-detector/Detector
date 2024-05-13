@@ -11,8 +11,8 @@ volume = 100
 
 
 notes = [262, 277, 294, 311, 330, 349, 370, 392, 415, 440, 466, 494, 523]
-tone_duration = 0.5
-rest_duration = 0.1
+tone_duration = 1
+rest_duration = 1
 
 
 tone.start(volume)

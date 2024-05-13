@@ -1,7 +1,6 @@
 import time
 import RPi.GPIO as GPIO
 import board
-import pwmio
 
 tone = GPIO.PWM(board.GP15, 440)#variable_frequency=True)
 volume = 99

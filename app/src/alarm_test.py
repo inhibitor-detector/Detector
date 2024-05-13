@@ -4,11 +4,11 @@ import RPi.GPIO as GPIO
 
 pin_number = 8
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin_number, GPIO.OUT)
 
 tone = GPIO.PWM(pin_number, 440)
-volume = 10
+volume = 1
 # tone.duty_cycle = volume
 
 tone.start(volume)

@@ -50,38 +50,6 @@ star_wars_song = [
     (G4, 0.5), (G4, 0.5), (G4, 0.5), (D_4_SHARP, 0.35), (A4_SHARP, 0.15), (G4, 0.5), (D_4_SHARP, 0.35), (A4_SHARP, 0.15), (G4, 1.0), (D5, 0.5), (D5, 0.5), (D5, 0.5), (D5_SHARP, 0.35), (A4_SHARP, 0.15), (F4_SHARP, 0.5), (D_4_SHARP, 0.35), (A4_SHARP, 0.15), (G4, 1.0), (G5, 0.5), (G4, 0.35), (G4, 0.15), (G5, 1.0), (F5_SHARP, 0.5), (F5, 0.35), (E5, 0.15), (D5_SHARP, 1.0), (E5, 0.5), (G4_SHARP, 0.35), (C5_SHARP, 0.15), (C5, 1.0), (B4, 0.5), (A4_SHARP, 0.35), (A4, 0.15), (G4, 1.0), (G5, 0.5), (G4, 0.35), (G4, 0.15), (G5, 1.0), (F5_SHARP, 0.5), (F5, 0.35), (E5, 0.15), (D5_SHARP, 1.0), (E5, 0.5), (G4_SHARP, 0.375), (C5_SHARP, 0.125), (C5, 1.0), (B4, 0.5), (A4_SHARP, 0.375), (A4, 0.125), (G4, 1.0)
 ]
 
-himno_argentino = [
-    (C4, 4*tempo), (E4, 4*tempo), (C4, 4*tempo), (G4, 4*tempo),
-    (F4, 4*tempo), (D4, 4*tempo), (B3, 4*tempo), (B3, 4*tempo), (B3, 4*tempo), (B3, 4*tempo),
-    (C4, 4*tempo), (D4, 4*tempo), (C4, 4*tempo),
-    (C4, 2*tempo),
-    (C4, 2*tempo),
-    (E4, 2*tempo), (A4, 2*tempo), (G4, 2*tempo), (F4, 2*tempo), (E4, 2*tempo), (D4, 2*tempo),
-    (G4, 2*tempo), (E4, 2*tempo), (C4, 2*tempo),
-    (F4, 2*tempo), (E4, 2*tempo), (D4, 2*tempo),
-    (F4, 2*tempo), (E4, 2*tempo), (D4, 2*tempo),
-    (E4, 2*tempo), (F4, 2*tempo), (G4, 2*tempo), (A4, 2*tempo), (B4, 2*tempo), (C5, 2*tempo),
-    (D5, 2*tempo), (E5, 2*tempo), (F5, 2*tempo), (G5, 2*tempo),
-    (C5, 2*tempo), (D5, 2*tempo), (E5, 2*tempo), (F5_SHARP, 2*tempo), (F5, 2*tempo),
-    (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo),
-    (E4, 2*tempo), (E4, 2*tempo), (G4, 2*tempo), (G4, 2*tempo), (E4, 2*tempo), (E4, 2*tempo), (F4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo),
-    (F4, 2*tempo), (F4, 2*tempo), (A4, 2*tempo), (A4, 2*tempo), (F4, 2*tempo), (F4, 2*tempo),
-    (E4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo),
-    (E4, 4*tempo), (E4, 4*tempo), (G4, 4*tempo), (G4, 4*tempo), (E4, 4*tempo), (E4, 4*tempo), (F4, 4*tempo), (D4, 4*tempo), (D4, 4*tempo), (D4, 4*tempo), (D4, 4*tempo), (D4, 4*tempo), (D4, 4*tempo),
-    (G4, 4*tempo), (E4, 4*tempo), (E4, 4*tempo), (E4, 4*tempo), (E4, 4*tempo), (E4, 4*tempo),
-    (A4, 4*tempo), (F4, 4*tempo), (F4, 4*tempo), (F4, 4*tempo), (F4, 4*tempo), (F4, 4*tempo),
-    (B3, 4*tempo), (G4, 4*tempo), (G4, 4*tempo), (G4, 4*tempo), (G4, 4*tempo), (G4, 4*tempo),
-    (C4, 4*tempo), (A4, 4*tempo), (A4, 4*tempo), (A4, 4*tempo), (A4, 4*tempo), (A4, 4*tempo),
-    (D4, 4*tempo), (B3, 4*tempo), (B3, 4*tempo), (B3, 4*tempo), (B3, 4*tempo), (B3, 4*tempo),
-    (E4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo),
-    (G4, 4*tempo), (E4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo),
-    (E4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo),
-    (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo)
-]
-
-
-
-
 
 tone.start(volume)
 
@@ -102,14 +70,9 @@ def play_sw_theme():
     for note, duration in star_wars_song:
         play_a_tone(note, duration)
 
-def play_himno_argentino():
-    for note, duration in himno_argentino:
-        play_a_tone(note, duration)
-
 try:
-    # play_tetris_theme()
+    play_tetris_theme()
     # play_sw_theme()
-    play_himno_argentino()
 finally:
     tone.stop()
     GPIO.cleanup()

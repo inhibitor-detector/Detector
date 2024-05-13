@@ -22,7 +22,7 @@ def play_a_tone(freq, duration):
     time.sleep(duration)
 
 def play_a_rest(duration):
-    tone.duty_cycle = 0
+    tone.ChangeDutyCycle(0)
     time.sleep(duration)
 
 for note in notes:

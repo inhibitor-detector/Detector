@@ -23,6 +23,7 @@ tone.start(volume)
 
 def play_a_tone(freq, duration):
     if freq == 0:
+        tone.ChangeDutyCycle(0)
         time.sleep(duration)
     else:
         tone.ChangeFrequency(freq)

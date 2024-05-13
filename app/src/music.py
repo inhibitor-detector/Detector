@@ -51,8 +51,34 @@ star_wars_song = [
 ]
 
 himno_argentino = [
-    (F4, tempo), (E4, tempo), (F4, tempo), (G4, tempo), (G4, tempo), (A4, tempo), (A4, tempo), (G4, tempo), (F4, tempo), (F4, tempo), (E4, tempo), (E4, tempo), (D4, tempo), (D4, tempo), (C4, tempo), (C4, tempo), (B3, tempo), (B3, tempo), (C4, tempo), (C4, tempo), (D4, tempo), (E4, tempo), (E4, tempo), (F4, tempo), (F4, tempo), (G4, tempo), (G4, tempo), (A4, tempo), (A4, tempo), (G4, tempo), (F4, tempo), (F4, tempo), (E4, tempo), (E4, tempo), (D4, tempo), (D4, tempo), (C4, tempo), (C4, tempo), (B3, tempo), (B3, tempo), (C4, tempo), (C4, tempo), (D4, tempo), (E4, tempo), (D4, tempo), (C4, tempo), (B3, tempo)
+    (C4, 4*tempo), (E4, 4*tempo), (C4, 4*tempo), (G4, 4*tempo),
+    (F4, 4*tempo), (D4, 4*tempo), (B3, 4*tempo), (B3, 4*tempo), (B3, 4*tempo), (B3, 4*tempo),
+    (C4, 4*tempo), (D4, 4*tempo), (C4, 4*tempo),
+    (C4, 2*tempo),
+    (C4, 2*tempo),
+    (E4, 2*tempo), (A4, 2*tempo), (G4, 2*tempo), (F4, 2*tempo), (E4, 2*tempo), (D4, 2*tempo),
+    (G4, 2*tempo), (E4, 2*tempo), (C4, 2*tempo),
+    (F4, 2*tempo), (E4, 2*tempo), (D4, 2*tempo),
+    (F4, 2*tempo), (E4, 2*tempo), (D4, 2*tempo),
+    (E4, 2*tempo), (F4, 2*tempo), (G4, 2*tempo), (A4, 2*tempo), (B4, 2*tempo), (C5, 2*tempo),
+    (D5, 2*tempo), (E5, 2*tempo), (F5, 2*tempo), (G5, 2*tempo),
+    (C5, 2*tempo), (D5, 2*tempo), (E5, 2*tempo), (F5_SHARP, 2*tempo), (F5, 2*tempo),
+    (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo), (D5, tempo),
+    (E4, 2*tempo), (E4, 2*tempo), (G4, 2*tempo), (G4, 2*tempo), (E4, 2*tempo), (E4, 2*tempo), (F4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo), (D4, 2*tempo),
+    (F4, 2*tempo), (F4, 2*tempo), (A4, 2*tempo), (A4, 2*tempo), (F4, 2*tempo), (F4, 2*tempo),
+    (E4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo),
+    (E4, 4*tempo), (E4, 4*tempo), (G4, 4*tempo), (G4, 4*tempo), (E4, 4*tempo), (E4, 4*tempo), (F4, 4*tempo), (D4, 4*tempo), (D4, 4*tempo), (D4, 4*tempo), (D4, 4*tempo), (D4, 4*tempo), (D4, 4*tempo),
+    (G4, 4*tempo), (E4, 4*tempo), (E4, 4*tempo), (E4, 4*tempo), (E4, 4*tempo), (E4, 4*tempo),
+    (A4, 4*tempo), (F4, 4*tempo), (F4, 4*tempo), (F4, 4*tempo), (F4, 4*tempo), (F4, 4*tempo),
+    (B3, 4*tempo), (G4, 4*tempo), (G4, 4*tempo), (G4, 4*tempo), (G4, 4*tempo), (G4, 4*tempo),
+    (C4, 4*tempo), (A4, 4*tempo), (A4, 4*tempo), (A4, 4*tempo), (A4, 4*tempo), (A4, 4*tempo),
+    (D4, 4*tempo), (B3, 4*tempo), (B3, 4*tempo), (B3, 4*tempo), (B3, 4*tempo), (B3, 4*tempo),
+    (E4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo),
+    (G4, 4*tempo), (E4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo),
+    (E4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo),
+    (C4, 4*tempo), (C4, 4*tempo), (C4, 4*tempo)
 ]
+
 
 
 

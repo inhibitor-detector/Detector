@@ -8,7 +8,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(pin_number, GPIO.OUT)
 
 tone = GPIO.PWM(pin_number, 440)
-volume = 1000
+volume = 10
 # tone.duty_cycle = volume
 
 tone.start(volume)

@@ -4,6 +4,5 @@ setup:
 start:
 	./start.sh
 
-generate-password:
-	./app/generate_password.sh
-	
+generate-env:
+	cp ./app/.env.example ./app/.env

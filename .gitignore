@@ -4,3 +4,4 @@ log_*.txt
 .old/api/.idea
 .old/api/venv
 .old/api/__pycache__
+.old/*

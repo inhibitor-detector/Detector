@@ -1,3 +1,5 @@
+#TODO add versions
+# con pip show te muestra la que tenes
 requests
 schedule
 python-dotenv

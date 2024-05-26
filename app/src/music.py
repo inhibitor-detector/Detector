@@ -42,6 +42,10 @@ tempo = 0.203125
 
 # tempo = 0.545
 
+alarm = [
+    (A, 0.5), (B, 0.5), (C, 0.5), (D, 0.5)
+]
+
 tetris_song = [
     (E5, 2*tempo), (B4, tempo), (C5, tempo), (D5, 2*tempo), (C5, tempo), (B4, tempo), (A4, 2*tempo), (A4, tempo), (C5, tempo), (E5, 2*tempo), (D5, tempo), (C5, tempo), (B4, 3*tempo), (C5, tempo), (D5, 2*tempo), (E5, 2*tempo), (C5, 2*tempo), (A4, 2*tempo), (A4, tempo), (A4, tempo), (B4, tempo), (C5, tempo), (D5, 3*tempo), (F5, tempo), (A5, 2*tempo), (G5, tempo), (F5, tempo), (E5, 3*tempo), (C5, tempo), (E5, 2*tempo), (D5, tempo), (C5, tempo), (B4, 2*tempo), (B4, tempo), (C5, tempo), (D5, 2*tempo), (E5, 2*tempo), (C5, 2*tempo), (A4, 2*tempo), (A4, 2*tempo)
 ]
@@ -90,6 +94,10 @@ def play_a_tone(freq, duration):
         tone.ChangeDutyCycle(volume)
         time.sleep(duration)
 
+def play_alarm():
+    for note, duration in alarm:
+        play_a_tone(note, duration)
+
 def play_tetris_theme():
     for note, duration in tetris_song:
         play_a_tone(note, duration)
@@ -103,7 +111,8 @@ def play_himno_argentino():
         play_a_tone(note, duration)
 
 try:
-    play_tetris_theme()
+    play_alarm()
+    # play_tetris_theme()
     # # play_sw_theme()
     # play_himno_argentino()
 finally:

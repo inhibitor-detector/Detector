@@ -17,7 +17,7 @@ class AnalyzerService:
         print("Running Analyzer service...")
         while True:
             self.check_logs()
-            time.sleep(5)
+            time.sleep(1)
     
     def check_logs(self):
         last_modified_time = os.path.getmtime(self.logs_file)
@@ -35,7 +35,7 @@ class AnalyzerService:
         for line in new_lines:
             if not self.inhibiton_detected:
                 if "ffffffffff" in line:
-                    print("Inhibitor detected")
+                    print("Inhibitor detected by Analyzer")
                     self.inhibiton_detected = True
                     self.send_inhibition_detected()
                     #i want to run the post on another thread so i can continue reading the file
@@ -67,7 +67,9 @@ class AnalyzerService:
                     self.rfcat_has_exited = True
 
             self.last_line_number_read += 1 #update read position
-
+            
+        if not self.inhibiton_detected:
+            print("No inhibiton detected.")
         self.inhibiton_detected = False #reset inhibiton detection
     
     # This is to avoid the attack of constantly occupying the analyzer in reading-mode

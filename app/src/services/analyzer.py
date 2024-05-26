@@ -27,6 +27,9 @@ class AnalyzerService:
                 print("Logs file modified, running analysis...")
                 self.last_modified_time = last_modified_time
                 self.run_analysis()
+                if not self.inhibiton_detected:
+                    print("No inhibiton detected.")
+                    self.inhibiton_detected = False #reset inhibiton detection flag
     
     def run_analysis(self):
         print("Running analysis of log file...")
@@ -42,7 +45,7 @@ class AnalyzerService:
                     self.send_inhibition_detected()
                     #i want to run the post on another thread so i can continue reading the file
 
-                elif "Error" in line:
+                elif "Error" in line and "straight Python..." not in line:
                     print("Error detected:")
                     if "Access denied (insufficient permissions)" in line:
                         print("Access denied:")
@@ -69,10 +72,7 @@ class AnalyzerService:
                     self.rfcat_has_exited = True
 
             self.last_line_number_read += 1 #update read position
-            
-        if not self.inhibiton_detected:
-            print("No inhibiton detected.")
-        self.inhibiton_detected = False #reset inhibiton detection
+
     
     # This is to avoid the attack of constantly occupying the analyzer in reading-mode
     def send_inhibition_detected(self):

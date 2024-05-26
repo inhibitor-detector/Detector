@@ -35,7 +35,7 @@ initial_beep = [
 ]
 
 wrong_setup = [
-    (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2),
+    (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2)
 ]
 
 alarm = [
@@ -93,6 +93,7 @@ def play_wrong_setup(): # Play forever to indicate wrong setup
         while True: 
             for note, duration in wrong_setup:
                 play_a_tone(note, duration)
+            time.sleep(1)
 
 
 def play():

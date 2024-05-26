@@ -24,6 +24,7 @@ class HeartbeatService:
             self.start_beating()
         else:
             print("Failed init")
+            self.detector.failed_init()
 
     def start_beating(self):
         while True:

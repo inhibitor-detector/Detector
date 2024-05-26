@@ -24,6 +24,10 @@ class Detector:
     
     def successful_init(self):
         alarm.play_setup()
+    
+    def failed_init(self):
+        self.post_heartbeat(False, False)
+        alarm.play_wrong_setup()
 
     def post_heartbeat(self, is_rfcat_running, is_analyzer_running):
         if is_rfcat_running and is_analyzer_running:

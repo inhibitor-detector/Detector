@@ -20,6 +20,7 @@ class HeartbeatService:
         while self.analyzer_service.successful_init != True and self.analyzer_is_running != False:
             time.sleep(1)
         if self.analyzer_service.successful_init:
+            print("Successful init")
             self.detector.successful_init()
             self.start_beating()
         else:

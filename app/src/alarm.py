@@ -26,14 +26,16 @@ C4_SHARP = 277.18
 C4 = 261.63
 B3 = 246.94
 
+silence = 0
+
 tempo = 0.203125
 
 initial_beep = [
-    (D5, tempo), (D5, tempo)
+    (D5, tempo), (silence, tempo/2), (D5, tempo), (silence, tempo/2)
 ]
 
 wrong_setup = [
-    (B4, tempo), (B4, tempo)
+    (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2),
 ]
 
 alarm = [
@@ -92,6 +94,7 @@ def play_wrong_setup(): # Play forever to indicate wrong setup
             for note, duration in wrong_setup:
                 play_a_tone(note, duration)
 
+
 def play():
     try:
         tone.start(volume)
@@ -110,5 +113,5 @@ def cleanup():
     GPIO.cleanup()
 
 if __name__ == "__main__":
-    play()
+    play_wrong_setup()
     cleanup()

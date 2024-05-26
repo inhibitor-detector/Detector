@@ -12,7 +12,7 @@ class AnalyzerService:
         self.inhibiton_detected = False
         self.rfcat_has_exited = False
         self.logs_lock = threading.Lock()
-        self.successful_init = True
+        self.successful_init = None
         print("Analyzer service initialized.")
 
     def run(self):
@@ -68,6 +68,7 @@ class AnalyzerService:
                 elif "falling back to straight Python..." in line:
                     print("Initial log change detected:")
                     print("\tSuccessfull connection to YARD.")
+                    self.successful_init = True
 
                 elif "exit()" in line:  # exit manually by dev or automatically if rfcat finished by expect.sh
                     print("rfcat exit() detected")

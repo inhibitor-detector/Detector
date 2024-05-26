@@ -68,7 +68,6 @@ try:
     play_tetris_theme()
 finally:
     tone.stop()
-    GPIO.cleanup()
 
 def play():
     try:

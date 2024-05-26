@@ -75,7 +75,9 @@ def play():
         play_alarm()
     finally:
         tone.stop()
-        GPIO.cleanup()
+
+def cleanup():
+    GPIO.cleanup()
 
 if __name__ == "__main__":
     play()

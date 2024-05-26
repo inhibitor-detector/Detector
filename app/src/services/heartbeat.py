@@ -38,6 +38,7 @@ class HeartbeatService:
     
     def check_analyzer(self):
         if self.analyzer_job.is_alive():
+            print("ANALYZER is still running.")
             self.analyzer_is_running = True
         else:
             print("ANALYZER is not running.")

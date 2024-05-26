@@ -6,6 +6,7 @@ import base64
 import jwt
 from datetime import datetime
 import alarm
+import threading
 
 class Detector:
     def __init__(self):
@@ -18,8 +19,6 @@ class Detector:
         self.last_token_timestamp = None
         self.id = self.get_id()
         self.signals_url = '/signals'
-        self.gnd_pin = 6 #hardcoded is simpler, no need to parametrize IO pins
-        self.gpio_pin = 8 #hardcoded is simpler, no need to parametrize IO pins
         print("Detector initialized.")
 
     def post_heartbeat(self, is_rfcat_running, is_analyzer_running):
@@ -34,9 +33,11 @@ class Detector:
     def inhibition_detected(self):
         print("Detector recieved an 'Inhibition detected' signal..")
         print("Sounding alarm")
-        self.sound_alarm()
+        sound_alarm = threading.Thread(target=self.sound_alarm)
+        sound_alarm.start()
         print("Posting inhibition detected to server")
-        self.post_inhibition_detected()
+        post_inhibition_detected = threading.Thread(target=self.post_inhibition_detected)
+        post_inhibition_detected.start()
 
     def sound_alarm(self):
         print("Sounding alarm...")

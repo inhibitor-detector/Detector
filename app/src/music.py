@@ -43,7 +43,7 @@ tempo = 0.203125
 # tempo = 0.545
 
 alarm = [
-    (A5, tempo), (F5_SHARP, tempo), (A5, tempo), (F5_SHARP, tempo), (A5, tempo), (F5_SHARP, tempo), (A5, tempo), (F5_SHARP, tempo)
+    (A5, tempo), (A4, tempo), (A5, tempo), (A4, tempo), (A5, tempo), (A4, tempo), (A5, tempo), (A4, tempo)
 ]
 
 tetris_song = [

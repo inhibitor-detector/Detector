@@ -21,6 +21,9 @@ class Detector:
         self.signals_url = '/signals'
         self.inhibition_detected_lock = threading.Lock()
         print("Detector initialized.")
+    
+    def successful_init(self):
+        alarm.play_setup()
 
     def post_heartbeat(self, is_rfcat_running, is_analyzer_running):
         if is_rfcat_running and is_analyzer_running:

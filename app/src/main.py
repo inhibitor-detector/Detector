@@ -19,7 +19,7 @@ async def run():
     analyzer_thread.start()
 
     heartbeat_service = HeartbeatService(detector, analyzer_thread, analyzer_service)
-    job_thread = threading.Thread(target=heartbeat_service.beat)
+    job_thread = threading.Thread(target=heartbeat_service.beat_start)
     job_thread.start()
 
 def check_params():

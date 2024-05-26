@@ -12,6 +12,7 @@ class AnalyzerService:
         self.inhibiton_detected = False
         self.rfcat_has_exited = False
         self.logs_lock = threading.Lock()
+        self.successful_init = True
         print("Analyzer service initialized.")
 
     def run(self):
@@ -29,7 +30,7 @@ class AnalyzerService:
                 self.run_analysis()
                 if not self.inhibiton_detected:
                     print("No inhibiton detected.")
-                    self.inhibiton_detected = False #reset inhibiton detection flag
+                self.inhibiton_detected = False #reset inhibiton detection flag
     
     def run_analysis(self):
         print("Running analysis of log file...")
@@ -47,6 +48,7 @@ class AnalyzerService:
 
                 elif "Error" in line and "straight Python..." not in line:
                     print("Error detected:")
+                    self.successful_init = False
                     if "Access denied (insufficient permissions)" in line:
                         print("Access denied:")
                         print("\tDid you run with sudo?")
@@ -62,10 +64,11 @@ class AnalyzerService:
                     else:
                         print("Unknown error:")
                         print(line)
+
                 elif "falling back to straight Python..." in line:
                     print("Initial log change detected:")
                     print("\tSuccessfull connection to YARD.")
-                    
+
                 elif "exit()" in line:  # exit manually by dev or automatically if rfcat finished by expect.sh
                     print("rfcat exit() detected")
                     self.rfcat_has_exited = True

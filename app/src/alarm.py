@@ -31,11 +31,11 @@ silence = 0
 tempo = 0.203125
 
 initial_beep = [
-    (D5, tempo), (silence, tempo/2), (D5, tempo), (silence, tempo/2)
+    (D5, tempo), (silence, tempo/2)
 ]
 
 wrong_setup = [
-    (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2)
+    (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2)
 ]
 
 alarm = [
@@ -88,12 +88,10 @@ def play_setup():
         for note, duration in tetris_song_1:
             play_a_tone(note, duration)
 
-def play_wrong_setup(): # Play forever to indicate wrong setup
+def play_wrong_setup():
     with alarm_lock:
-        while True: 
-            for note, duration in wrong_setup:
-                play_a_tone(note, duration)
-            time.sleep(1)
+        for note, duration in wrong_setup:
+            play_a_tone(note, duration)
 
 
 def play():

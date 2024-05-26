@@ -5,6 +5,7 @@ import json
 import base64
 import jwt
 from datetime import datetime
+import alarm
 
 class Detector:
     def __init__(self):
@@ -39,6 +40,8 @@ class Detector:
 
     def sound_alarm(self):
         print("Sounding alarm...")
+        alarm.play()
+
         #TODO implement sound alarm
 
     def post_inhibition_detected(self):

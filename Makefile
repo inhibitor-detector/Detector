@@ -1,7 +1,7 @@
 setup:
 	./setup.sh
 
-start:
+run:
 	./start.sh
 
 generate-env:

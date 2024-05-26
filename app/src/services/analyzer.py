@@ -72,7 +72,7 @@ class AnalyzerService:
                     print("\tSuccessfull mounting of YARD.")
                     self.yard_successful_init = 0.5 # halfway there
                 
-                elif self.successful_init == 0.5: # no errors found on read of YARD data
+                elif self.yard_successful_init == 0.5: # no errors found on read of YARD data
                     print("Succesfull YARD initialization")
                     self.yard_successful_init = True
 

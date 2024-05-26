@@ -37,7 +37,7 @@ class AnalyzerService:
                 if "ffffffffff" in line:
                     print("Inhibitor detected")
                     self.inhibiton_detected = True
-                    self.post_inhibition_detected()
+                    self.send_inhibition_detected()
                     #i want to run the post on another thread so i can continue reading the file
 
                 elif "Error" in line:
@@ -71,9 +71,9 @@ class AnalyzerService:
         self.inhibiton_detected = False #reset inhibiton detection
     
     # This is to avoid the attack of constantly occupying the analyzer in reading-mode
-    def post_inhibition_detected(self):
+    def send_inhibition_detected(self):
         print("Posting inhibition detected...")
-        post_detection = threading.Thread(target=self.detector.post_inhibition_detected)
+        post_detection = threading.Thread(target=self.detector.inhibition_detected)
         post_detection.start()
 
     def has_rfcat_exited(self):

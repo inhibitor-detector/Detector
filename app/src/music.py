@@ -103,9 +103,9 @@ def play_himno_argentino():
         play_a_tone(note, duration)
 
 try:
-    # play_tetris_theme()
-    # play_sw_theme()
-    play_himno_argentino()
+    play_tetris_theme()
+    # # play_sw_theme()
+    # play_himno_argentino()
 finally:
     tone.stop()
     GPIO.cleanup()

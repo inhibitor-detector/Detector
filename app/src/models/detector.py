@@ -17,6 +17,8 @@ class Detector:
         self.last_token_timestamp = None
         self.id = self.get_id()
         self.signals_url = '/signals'
+        self.gnd_pin = 6 #hardcoded is simpler, no need to parametrize IO pins
+        self.gpio_pin = 8 #hardcoded is simpler, no need to parametrize IO pins
         print("Detector initialized.")
 
     def post_heartbeat(self, is_rfcat_running, is_analyzer_running):
@@ -27,6 +29,17 @@ class Detector:
             print("Posting a failed heartbeat...")
             data = self.generate_data(isHeartbeat=True, failed=True, rfcat_failed = not is_rfcat_running, analyzer_failed = not is_analyzer_running)
         self.post(self.signals_url, data)
+
+    def inhibition_detected(self):
+        print("Detector recieved an 'Inhibition detected' signal..")
+        print("Sounding alarm")
+        self.sound_alarm()
+        print("Posting inhibition detected to server")
+        self.post_inhibition_detected()
+
+    def sound_alarm(self):
+        print("Sounding alarm...")
+        #TODO implement sound alarm
 
     def post_inhibition_detected(self):
         print("Posting inhibition detected...")
@@ -108,4 +121,5 @@ if __name__ == "__main__": #to execute locally
     constants.API_URL="http://192.168.0.234:8000"
     detector = Detector()
     detector.post_heartbeat(True, True)
-    detector.post_inhibition_detected()
+    # detector.inhibition_detected()
+    detector.sound_alarm()

@@ -44,9 +44,9 @@ tetris_song_2 = [
 gnd_pin = 6 
 gpio_pin = 8
 
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(gpio_pin, GPIO.OUT)
-GPIO.setwarnings(False)
 
 tone = GPIO.PWM(gpio_pin, 440)
 volume = 99

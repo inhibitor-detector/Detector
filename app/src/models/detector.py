@@ -19,6 +19,7 @@ class Detector:
         self.last_token_timestamp = None
         self.id = self.get_id()
         self.signals_url = '/signals'
+        self.inhibition_detected_lock = threading.Lock()
         print("Detector initialized.")
 
     def post_heartbeat(self, is_rfcat_running, is_analyzer_running):
@@ -33,20 +34,19 @@ class Detector:
     def inhibition_detected(self):
         print("Detector recieved an 'Inhibition detected' signal..")
         print("Sounding alarm")
-        sound_alarm = threading.Thread(target=self.sound_alarm)
-        sound_alarm.start()
+        threading.Thread(target=self.sound_alarm).start()
         print("Posting inhibition detected to server")
-        post_inhibition_detected = threading.Thread(target=self.post_inhibition_detected)
-        post_inhibition_detected.start()
+        threading.Thread(target=self.post_inhibition_detected).start()
 
     def sound_alarm(self):
         print("Sounding alarm...")
         alarm.play()
 
     def post_inhibition_detected(self):
-        print("Posting inhibition detected...")
-        data = self.generate_data(isHeartbeat=False)
-        self.post(self.signals_url, data)
+        with self.inhibition_detected_lock:
+            print("Posting inhibition detected...")
+            data = self.generate_data(isHeartbeat=False)
+            self.post(self.signals_url, data)
 
     def generate_data(self, isHeartbeat, failed=False, rfcat_failed=False, analyzer_failed=False):
 
@@ -77,9 +77,9 @@ class Detector:
         self.handle_response(response)
     
     def handle_response(self, response):
-        print("Response:")
-        print(response.status_code)
-        print(response.text)
+        # print("Response:")
+        # print(response.status_code)
+        # print(response.text)
         if response.status_code == 401:
             print("401 Unauthorized")
             return

@@ -11,27 +11,29 @@ class AnalyzerService:
         self.last_line_number_read = 0
         self.inhibiton_detected = False
         self.rfcat_has_exited = False
+        self.logs_lock = threading.Lock()
         print("Analyzer service initialized.")
 
     def run(self):
         print("Running Analyzer service...")
         while True:
             self.check_logs()
-            time.sleep(1)
+            time.sleep(3)
     
     def check_logs(self):
-        last_modified_time = os.path.getmtime(self.logs_file)
-        if last_modified_time > self.last_modified_time:
-            print("Logs file modified, running analysis...")
-            self.last_modified_time = last_modified_time
-            self.run_analysis()
+        with self.logs_lock:
+            last_modified_time = os.path.getmtime(self.logs_file)
+            if last_modified_time > self.last_modified_time:
+                print("Logs file modified, running analysis...")
+                self.last_modified_time = last_modified_time
+                self.run_analysis()
     
     def run_analysis(self):
         print("Running analysis of log file...")
         with open(self.logs_file, 'r') as file:
             #read from last line read, up to the max of the file at this moment.
             new_lines = file.readlines()[self.last_line_number_read:]
-            #then close the file so the is no concurrency problems, or stuck-reading problems. There never has beem but just in case
+            #then close the file so there is no stuck-reading problems.
         for line in new_lines:
             if not self.inhibiton_detected:
                 if "ffffffffff" in line:
@@ -43,20 +45,20 @@ class AnalyzerService:
                 elif "Error" in line:
                     print("Error detected:")
                     if "Access denied (insufficient permissions)" in line:
-                        print("Access denied")
-                        print("Did you run with sudo?")
+                        print("Access denied:")
+                        print("\tDid you run with sudo?")
 
                     elif "No Dongle Found" in line:
-                        print("No Dongle Found")
-                        print("Is the YARD plugged in?")
+                        print("No Dongle Found:")
+                        print("\tIs the YARD plugged in?")
                     
                     elif "USBTimeoutError" in line:
-                        print("USBTimeoutError")
-                        print("YARD exited with error last time, unplug and plug it back in")
+                        print("USBTimeoutError:")
+                        print("\tYARD exited with error last time, unplug and plug it back in")
 
                     elif "falling back to straight Python..." in line:
-                        print("Falling back to straight Python")
-                        print("You can ignore this error")
+                        print("Falling back to straight Python:")
+                        print("\tYou can ignore this error")
                     
                     else:
                         print("Unknown error:")
@@ -75,8 +77,7 @@ class AnalyzerService:
     # This is to avoid the attack of constantly occupying the analyzer in reading-mode
     def send_inhibition_detected(self):
         print("Posting inhibition detected...")
-        post_detection = threading.Thread(target=self.detector.inhibition_detected)
-        post_detection.start()
+        threading.Thread(target=self.detector.inhibition_detected).start()
 
     def has_rfcat_exited(self):
         return self.rfcat_has_exited

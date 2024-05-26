@@ -42,8 +42,6 @@ class Detector:
         print("Sounding alarm...")
         alarm.play()
 
-        #TODO implement sound alarm
-
     def post_inhibition_detected(self):
         print("Posting inhibition detected...")
         data = self.generate_data(isHeartbeat=False)

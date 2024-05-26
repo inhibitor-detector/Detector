@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root or use sudo."
+  exit 1
+fi
+
 filename="./app/logs/log_$(date +'%Y-%m-%d_%H-%M-%S').txt"
 touch "$filename"
 

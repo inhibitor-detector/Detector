@@ -15,6 +15,7 @@ B = 494
 C = 523
 D = 587
 
+B5 = 987.77
 A5 = 880.0
 G5 = 783.99087
 F5_SHARP = 739.99
@@ -44,7 +45,7 @@ tempo = 0.40625
 # tempo = 0.545
 
 alarm = [
-    (F5, tempo), (A5, tempo), (0, tempo/2), (F5, tempo), (A5, tempo), (0, tempo/2), (F5, tempo), (A5, tempo), (0, tempo/2), (F5, tempo), (A5, tempo)
+    (F5_SHARP, tempo), (B5, tempo), (F5_SHARP, tempo), (B5, tempo), (F5_SHARP, tempo), (B5, tempo)
 ]
 
 tetris_song = [

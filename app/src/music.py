@@ -39,13 +39,12 @@ C4_SHARP = 277.18
 C4 = 261.63
 B3 = 246.94
 
-# tempo = 0.203125
-tempo = 0.40625
+tempo = 0.203125
 
 # tempo = 0.545
 
 alarm = [
-    (F5_SHARP, tempo), (B5, tempo), (F5_SHARP, tempo), (B5, tempo), (F5_SHARP, tempo), (B5, tempo)
+    (B5, tempo), (F5_SHARP, tempo), (B5, tempo), (F5_SHARP, tempo), (B5, tempo), (F5_SHARP, tempo), (B5, tempo)
 ]
 
 tetris_song = [

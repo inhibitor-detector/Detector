@@ -22,10 +22,10 @@ class HeartbeatService:
         if self.analyzer_service.successful_init:
             print("Successful init")
             self.detector.successful_init()
-            self.start_beating()
         else:
             print("Failed init")
             self.detector.failed_init()
+        self.start_beating()
 
     def start_beating(self):
         while True:

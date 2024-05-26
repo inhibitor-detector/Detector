@@ -123,6 +123,6 @@ if __name__ == "__main__": #to execute locally
     constants.PASSWORD="12345678"
     constants.API_URL="http://192.168.0.234:8000"
     detector = Detector()
-    detector.post_heartbeat(True, True)
+    # detector.post_heartbeat(True, True)
     # detector.inhibition_detected()
     detector.sound_alarm()

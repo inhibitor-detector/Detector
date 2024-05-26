@@ -68,6 +68,9 @@ class AnalyzerService:
                 elif "falling back to straight Python..." in line:
                     print("Initial log change detected:")
                     print("\tSuccessfull connection to YARD.")
+                    self.successful_init = 0.5 # halfway there
+                
+                elif self.successful_init == 0.5: # no errors found on second log change
                     self.successful_init = True
 
                 elif "exit()" in line:  # exit manually by dev or automatically if rfcat finished by expect.sh

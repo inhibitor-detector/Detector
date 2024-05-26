@@ -38,12 +38,10 @@ tempo = 0.203125
 alarm = [
     (B5, tempo), (F5_SHARP, tempo), (B5, tempo), (F5_SHARP, tempo), (B5, tempo), (F5_SHARP, tempo), (B5, tempo), (B5, tempo), (F5_SHARP, tempo), (B5, tempo), (F5_SHARP, tempo), (B5, tempo), (F5_SHARP, tempo), (B5, tempo)
 ]
-
 tetris_song = [
     (E5, 2*tempo), (B4, tempo), (C5, tempo), (D5, 2*tempo), (C5, tempo), (B4, tempo), (A4, 2*tempo), (A4, tempo), (C5, tempo), (E5, 2*tempo), (D5, tempo), (C5, tempo), (B4, 3*tempo), (C5, tempo), (D5, 2*tempo), (E5, 2*tempo), (C5, 2*tempo), (A4, 2*tempo), (A4, tempo), (A4, tempo), (B4, tempo), (C5, tempo), (D5, 3*tempo), (F5, tempo), (A5, 2*tempo), (G5, tempo), (F5, tempo), (E5, 3*tempo), (C5, tempo), (E5, 2*tempo), (D5, tempo), (C5, tempo), (B4, 2*tempo), (B4, tempo), (C5, tempo), (D5, 2*tempo), (E5, 2*tempo), (C5, 2*tempo), (A4, 2*tempo), (A4, 2*tempo)
 ]
 
-tone.start(volume)
 
 def play_a_tone(freq, duration):
     if freq == 0:
@@ -62,10 +60,17 @@ def play_tetris_theme():
     for note, duration in tetris_song:
         play_a_tone(note, duration)
 
+try: 
+    tone.start(volume)
+    play_tetris_theme()
+finally:
+    tone.stop()
+    GPIO.cleanup()
+
 def play():
     try:
+        tone.start(volume)
         play_alarm()
-        # play_tetris_theme()
     finally:
         tone.stop()
         GPIO.cleanup()

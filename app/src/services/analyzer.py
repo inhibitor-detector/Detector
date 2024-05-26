@@ -13,7 +13,7 @@ class AnalyzerService:
         self.rfcat_has_exited = False
         self.yard_error_detected = False
         self.logs_lock = threading.Lock()
-        self.successful_init = None
+        self.yard_successful_init = None
         print("Analyzer service initialized.")
 
     def run(self):
@@ -49,7 +49,7 @@ class AnalyzerService:
 
                 elif "Error" in line and "straight Python..." not in line:
                     print("Error detected:")
-                    self.successful_init = False # to catch if failed on init
+                    self.yard_successful_init = False # to catch if failed on init
                     self.yard_error_detected = True
                     if "Access denied (insufficient permissions)" in line:
                         print("Access denied:")
@@ -69,12 +69,12 @@ class AnalyzerService:
 
                 elif "falling back to straight Python..." in line:
                     print("Initial log change detected:")
-                    print("\tSuccessfull connection to YARD.")
-                    self.successful_init = 0.5 # halfway there
+                    print("\tSuccessfull mounting of YARD.")
+                    self.yard_successful_init = 0.5 # halfway there
                 
-                elif self.successful_init == 0.5: # no errors found on second log change
+                elif self.successful_init == 0.5: # no errors found on read of YARD data
                     print("Succesfull YARD initialization")
-                    self.successful_init = True
+                    self.yard_successful_init = True
 
                 elif "exit()" in line:  # exit manually by dev or automatically if rfcat finished by expect.sh
                     print("rfcat exit() detected")

@@ -17,7 +17,7 @@ class HeartbeatService:
         self.analyzer_service = analyzer_service
     
     def beat_start(self):
-        while self.analyzer_service.yard_successful_init != True and self.yard_successful_init != False:
+        while self.analyzer_service.yard_successful_init != True and self.analyzer_service.yard_successful_init != False:
             print("Waiting for YARD to initialize...")
             time.sleep(1)
         if self.analyzer_service.yard_successful_init:

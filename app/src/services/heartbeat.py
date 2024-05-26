@@ -54,4 +54,7 @@ class HeartbeatService:
         else:
             print("ANALYZER is not running.")
             self.analyzer_is_running = False
+        if self.analyzer_service.yard_error_detected:
+            print("YARD error detected")
+            self.analyzer_is_running = False
         return self.analyzer_is_running

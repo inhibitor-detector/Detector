@@ -27,15 +27,16 @@ class Detector:
     
     def failed_init(self):
         self.post_heartbeat(False, False)
-        while True:
-            print("Playing wrong setup beep")
-            alarm.play_wrong_setup()
+        print("Playing wrong setup beep")
+        alarm.play_wrong_setup()
 
     def post_heartbeat(self, is_rfcat_running, is_analyzer_running):
         if is_rfcat_running and is_analyzer_running:
             print("Posting a successfull heartbeat...")
             data = self.generate_data(isHeartbeat=True)
         else:
+            print("Playing wrong setup beep")
+            alarm.play_wrong_setup()
             print("Posting a failed heartbeat...")
             data = self.generate_data(isHeartbeat=True, failed=True, rfcat_failed = not is_rfcat_running, analyzer_failed = not is_analyzer_running)
         self.post(self.signals_url, data)
@@ -49,7 +50,7 @@ class Detector:
 
     def sound_alarm(self):
         print("Sounding alarm...")
-        alarm.play()
+        alarm.play_alarm()
 
     def post_inhibition_detected(self):
         with self.inhibition_detected_lock:

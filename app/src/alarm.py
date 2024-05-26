@@ -73,40 +73,26 @@ def play_a_tone(freq, duration):
         tone.ChangeDutyCycle(volume)
         time.sleep(duration)
 
+def play_sound(sound):
+    with alarm_lock:
+        tone.start(volume)
+        for note, duration in sound:
+            play_a_tone(note, duration)
+        tone.stop()
+        
 def play_alarm():
-    with alarm_lock:
-        for note, duration in alarm:
-            play_a_tone(note, duration)
+    play_sound(alarm)
 
-def play_setup_1():
-    with alarm_lock:
-        for note, duration in initial_beep:
-            play_a_tone(note, duration)
+def play_initial_beep():
+    play_sound(initial_beep)
 
 def play_setup():
-    with alarm_lock:
-        for note, duration in tetris_song_1:
-            play_a_tone(note, duration)
+    play_sound(tetris_song_1)
 
 def play_wrong_setup():
-    with alarm_lock:
-        for note, duration in wrong_setup:
-            play_a_tone(note, duration)
+    play_sound(wrong_setup)
 
-
-def play():
-    try:
-        tone.start(volume)
-        play_alarm()
-    finally:
-        tone.stop()
-
-try: # initial beep
-    tone.start(volume)
-    play_setup_1()
-finally:
-    tone.stop()
-
+play_initial_beep()
 
 def cleanup():
     GPIO.cleanup()

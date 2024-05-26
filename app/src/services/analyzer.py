@@ -11,6 +11,7 @@ class AnalyzerService:
         self.last_line_number_read = 0
         self.inhibiton_detected = False
         self.rfcat_has_exited = False
+        self.yard_error_detected = False
         self.logs_lock = threading.Lock()
         self.successful_init = None
         print("Analyzer service initialized.")
@@ -48,7 +49,8 @@ class AnalyzerService:
 
                 elif "Error" in line and "straight Python..." not in line:
                     print("Error detected:")
-                    self.successful_init = False
+                    self.successful_init = False # to catch if failed on init
+                    self.yard_error_detected = True
                     if "Access denied (insufficient permissions)" in line:
                         print("Access denied:")
                         print("\tDid you run with sudo?")

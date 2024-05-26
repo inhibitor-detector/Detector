@@ -28,7 +28,9 @@ class Detector:
     def failed_init(self):
         self.post_heartbeat(False, False)
         print("Playing wrong setup beep")
-        alarm.play_wrong_setup()
+        while True:
+            alarm.play_wrong_setup()
+            time.sleep(1)
 
     def post_heartbeat(self, is_rfcat_running, is_analyzer_running):
         if is_rfcat_running and is_analyzer_running:

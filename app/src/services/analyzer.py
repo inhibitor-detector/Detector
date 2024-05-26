@@ -58,15 +58,14 @@ class AnalyzerService:
                     elif "USBTimeoutError" in line:
                         print("USBTimeoutError:")
                         print("\tYARD exited with error last time, unplug and plug it back in")
-
-                    elif "falling back to straight Python..." in line:
-                        print("Falling back to straight Python:")
-                        print("\tYou can ignore this error")
                     
                     else:
                         print("Unknown error:")
                         print(line)
-
+                elif "falling back to straight Python..." in line:
+                    print("Initial log change detected:")
+                    print("\tSuccessfull connection to YARD.")
+                    
                 elif "exit()" in line:  # exit manually by dev or automatically if rfcat finished by expect.sh
                     print("rfcat exit() detected")
                     self.rfcat_has_exited = True

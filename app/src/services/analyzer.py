@@ -73,6 +73,7 @@ class AnalyzerService:
                     self.successful_init = 0.5 # halfway there
                 
                 elif self.successful_init == 0.5: # no errors found on second log change
+                    print("Succesfull YARD initialization")
                     self.successful_init = True
 
                 elif "exit()" in line:  # exit manually by dev or automatically if rfcat finished by expect.sh

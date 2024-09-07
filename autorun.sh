@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd tesis/Detector
+cd /home/tesis/tesis/Detector
 
 sudo make run

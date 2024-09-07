@@ -5,7 +5,7 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-filename="./app/logs/log_$(date +'%Y-%m-%d_%H-%M-%S').txt"
+filename="/home/tesis/tesis/Detector/app/logs/log_$(date +'%Y-%m-%d_%H-%M-%S').txt"
 touch "$filename"
 
 ./app/auto_rfcat.sh >> "$filename" &

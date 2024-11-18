@@ -29,7 +29,7 @@ class Detector:
         self.post_heartbeat(False, False)
         print("Playing wrong setup beep")
         while True:
-            alarm.play_wrong_setup()
+            alarm.play_error()
             time.sleep(1)
 
     def post_heartbeat(self, is_rfcat_running, is_analyzer_running):
@@ -38,7 +38,7 @@ class Detector:
             data = self.generate_data(isHeartbeat=True)
         else:
             print("Playing wrong setup beep")
-            alarm.play_wrong_setup()
+            alarm.play_error()
             print("Posting a failed heartbeat...")
             data = self.generate_data(isHeartbeat=True, failed=True, rfcat_failed = not is_rfcat_running, analyzer_failed = not is_analyzer_running)
         self.post(self.signals_url, data)
@@ -76,11 +76,19 @@ class Detector:
 
     def post(self, url, data, must_use_basic=False):
         headers={'Content-Type': 'application/json', 'Authorization': self.get_authorization(must_use_basic)}
-        response = requests.post(
-            self.api_endpoint + url,
-            headers=headers,
-            data=data,
-        )
+        response = None
+        try:
+            response = requests.post(
+                self.api_endpoint + url,
+                headers=headers,
+                data=data,
+            )
+        except requests.exceptions as e:
+            print("Post of data failed:")
+            print(e)
+            alarm.play_error()
+            return
+        
         if response.status_code == 401 and not must_use_basic:
             print("401 Unauthorized")
             print("Trying again with basic auth...")
@@ -129,7 +137,7 @@ class Detector:
         #     return self.basic_authorization
         return self.bearer_token
 
-if __name__ == "__main__": #to execute locally
+if __name__ == "__main__": #to execute on PC for tests. This won't run in the RPI
     constants.DETECTOR_USER="det_1_cliente_1" #dont know if this inline definition of constants.x works
     constants.PASSWORD="12345678"
     constants.API_URL="http://192.168.0.234:8000"

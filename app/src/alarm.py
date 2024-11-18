@@ -34,7 +34,7 @@ initial_beep = [
     (D5, tempo), (silence, tempo/2)
 ]
 
-wrong_setup = [
+error_sound = [
     (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2)
 ]
 
@@ -44,11 +44,6 @@ alarm = [
 
 tetris_song_1 = [
     (E5, 2*tempo), (B4, tempo), (C5, tempo), (D5, 2*tempo), (C5, tempo), (B4, tempo), (A4, 2*tempo), (A4, tempo), (C5, tempo), (E5, 2*tempo)
-]
-
-tetris_song_2 = [
-    (D5, tempo), (C5, tempo), (B4, 3*tempo), (C5, tempo), (D5, 2*tempo), (E5, 2*tempo), (C5, 2*tempo), (A4, 2*tempo), (A4, tempo)
-    # (A4, tempo), (B4, tempo), (C5, tempo), (D5, 3*tempo), (F5, tempo), (A5, 2*tempo), (G5, tempo), (F5, tempo), (E5, 3*tempo), (C5, tempo), (E5, 2*tempo), (D5, tempo), (C5, tempo), (B4, 2*tempo), (B4, tempo), (C5, tempo), (D5, 2*tempo), (E5, 2*tempo), (C5, 2*tempo), (A4, 2*tempo), (A4, 2*tempo)
 ]
 
 #hardcoded is simpler, no need to parametrize IO pins
@@ -89,8 +84,8 @@ def play_initial_beep():
 def play_setup():
     play_sound(tetris_song_1)
 
-def play_wrong_setup():
-    play_sound(wrong_setup)
+def play_error():
+    play_sound(error_sound)
 
 play_initial_beep()
 
@@ -98,5 +93,5 @@ def cleanup():
     GPIO.cleanup()
 
 if __name__ == "__main__":
-    play_wrong_setup()
+    play_error()
     cleanup()

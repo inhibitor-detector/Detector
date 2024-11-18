@@ -83,7 +83,7 @@ class Detector:
                 headers=headers,
                 data=data,
             )
-        except requests.exceptions as e:
+        except requests.exceptions.RequestException as e:
             print("Post of data failed:")
             print(e)
             alarm.play_error()
@@ -118,7 +118,7 @@ class Detector:
                 self.api_endpoint,
                 headers=headers,
             )
-        except requests.exceptions as e:
+        except requests.exceptions.RequestException as e:
             print("Get of ID failed:")
             print(e)
             alarm.play_error()

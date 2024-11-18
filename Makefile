@@ -1,3 +1,5 @@
+.PHONY: setup start stop generate-env
+
 setup:
 	./setup.sh
 

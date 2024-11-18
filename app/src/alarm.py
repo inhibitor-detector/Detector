@@ -35,7 +35,7 @@ initial_beep = [
 ]
 
 error_sound = [
-    (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2)
+    (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, 2*tempo), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, tempo/2), (B4, tempo), (silence, 2*tempo)
 ]
 
 alarm = [

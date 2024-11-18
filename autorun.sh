@@ -2,4 +2,4 @@
 
 cd /home/tesis/tesis/Detector
 
-sudo make run
+sudo make start

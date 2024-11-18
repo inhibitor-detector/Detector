@@ -1,7 +1,7 @@
 setup:
 	./setup.sh
 
-run:
+start:
 	./start.sh
 
 stop:

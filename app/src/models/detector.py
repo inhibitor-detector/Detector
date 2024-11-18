@@ -112,10 +112,17 @@ class Detector:
     def get_id(self):
         print("Getting detector ID...")
         headers={'Content-Type': 'application/json', 'Authorization': self.get_authorization(must_use_basic=True)}
-        response = requests.get(
-            self.api_endpoint,
-            headers=headers,
-        )
+        response = None
+        try:
+            response = requests.get(
+                self.api_endpoint,
+                headers=headers,
+            )
+        except requests.exceptions as e:
+            print("Get of ID failed:")
+            print(e)
+            alarm.play_error()
+            return
         
         self.handle_response(response)
         # return response.text.get('id') #TODO implement, get from bearer token

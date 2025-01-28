@@ -65,7 +65,8 @@ class Detector:
         data = {
                     "timestamp": datetime.now().isoformat(),
                     "detectorId": self.id,
-                    "isHeartbeat": isHeartbeat
+                    "isHeartbeat": isHeartbeat,
+                    "acknowledged": False
                 }
         if failed: #TODO add to API
             data["failed"] = failed

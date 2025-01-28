@@ -19,8 +19,8 @@ async def run():
     analyzer_thread.start()
 
     heartbeat_service = HeartbeatService(detector, analyzer_thread, analyzer_service)
-    job_thread = threading.Thread(target=heartbeat_service.beat_start)
-    job_thread.start()
+    heartbeat_thread = threading.Thread(target=heartbeat_service.beat_start)
+    heartbeat_thread.start()
 
 def check_params():
     if len(sys.argv)!= 2:

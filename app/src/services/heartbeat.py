@@ -61,7 +61,7 @@ class HeartbeatService:
     
     def check_memory(self):
         bash_command =  """
-                        THRESHOLD=10; AVAILABLE_PERCENT=$(echo "scale=2; $(free -m | grep Mem | awk '{print $7}') / $(free -m | grep Mem | awk '{print $2}') * 100" | bc); SWAP_USED=$(free -m | grep Swap | awk '{print $3}'); (( $(echo "$AVAILABLE_PERCENT < $THRESHOLD" | bc -l) )) && (( $SWAP_USED > 0 )) && echo "WARNING: System is at risk of OOM! Available memory: $AVAILABLE_PERCENT%, Swap used: $SWAP_USED MB" || echo "OK: Available memory is $AVAILABLE_PERCENT%, Swap used: $SWAP_USED MB"
+                        THRESHOLD=10; AVAILABLE_PERCENT=$(echo "scale=2; $(free -m | grep Mem | awk '{print $7}') / $(free -m | grep Mem | awk '{print $2}') * 100" | bc); SWAP_USED=$(free -m | grep Swap | awk '{print $3}'); (( $(echo "$AVAILABLE_PERCENT < $THRESHOLD" | bc -l) )) && (( $SWAP_USED > 0 )) && echo "memory WARNING: System is at risk of OOM! Available memory: $AVAILABLE_PERCENT%, Swap used: $SWAP_USED MB" || echo "memory OK: Available memory is $AVAILABLE_PERCENT%, Swap used: $SWAP_USED MB"
                         """
         result = subprocess.run(bash_command, shell=True, capture_output=True, text=True)
         output = result.stdout.strip()

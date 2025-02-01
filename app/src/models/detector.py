@@ -26,21 +26,21 @@ class Detector:
         alarm.play_setup()
     
     def failed_init(self):
-        self.post_heartbeat(False, False)
+        self.post_heartbeat(False, False, False)
         print("Playing wrong setup beep")
         while True:
             alarm.play_error()
             time.sleep(1)
 
-    def post_heartbeat(self, is_rfcat_running, is_analyzer_running):
-        if is_rfcat_running and is_analyzer_running:
+    def post_heartbeat(self, is_rfcat_running, is_analyzer_running, is_memory_healthy):
+        if is_rfcat_running and is_analyzer_running and is_memory_healthy:
             print("Posting a successfull heartbeat...")
             data = self.generate_data(isHeartbeat=True)
         else:
-            print("Playing wrong setup beep")
+            print("Playing error beep")
             alarm.play_error()
             print("Posting a failed heartbeat...")
-            data = self.generate_data(isHeartbeat=True, failed=True, rfcat_failed = not is_rfcat_running, analyzer_failed = not is_analyzer_running)
+            data = self.generate_data(isHeartbeat=True, failed=True, rfcat_failed = not is_rfcat_running, analyzer_failed = not is_analyzer_running, memory_failed = not is_memory_healthy)
         self.post(self.signals_url, data)
 
     def inhibition_detected(self):
@@ -60,8 +60,7 @@ class Detector:
             data = self.generate_data(isHeartbeat=False)
             self.post(self.signals_url, data)
 
-    def generate_data(self, isHeartbeat, failed=False, rfcat_failed=False, analyzer_failed=False):
-
+    def generate_data(self, isHeartbeat, failed=False, rfcat_failed=False, analyzer_failed=False, memory_failed=False):
         data = {
                     "timestamp": datetime.now().isoformat(),
                     "detectorId": self.id,
@@ -72,6 +71,7 @@ class Detector:
             data["failed"] = failed
             data["rfcatFailed"] = rfcat_failed
             data["analyzerFailed"] = analyzer_failed
+            data["memoryFailed"] = memory_failed
         data = json.dumps(data)
         return data
 

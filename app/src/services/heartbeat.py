@@ -1,8 +1,6 @@
 import os
 import subprocess
-import requests
 from config import constants
-# import jwt
 import asyncio
 import time
 from models import detector
@@ -15,6 +13,7 @@ class HeartbeatService:
         self.analyzer_is_running = False
         self.analyzer_job = analyzer_job
         self.analyzer_service = analyzer_service
+        self.memory_is_healthy = False
     
     def beat_start(self):
         while self.analyzer_service.yard_successful_init != True and self.analyzer_service.yard_successful_init != False:
@@ -32,7 +31,7 @@ class HeartbeatService:
         while True:
             time.sleep(10)
             print("Heart beating...")            
-            self.detector.post_heartbeat(self.check_rfcat(), self.check_analyzer())
+            self.detector.post_heartbeat(self.check_rfcat(), self.check_analyzer(), self.check_memory())
     
     def check_rfcat(self):
         try:
@@ -59,3 +58,19 @@ class HeartbeatService:
             print("YARD error detected")
             self.analyzer_is_running = False
         return self.analyzer_is_running
+    
+    def check_memory(self):
+        bash_command =  """
+                        THRESHOLD=10; AVAILABLE_PERCENT=$(echo "scale=2; $(free -m | grep Mem | awk '{print $7}') / $(free -m | grep Mem | awk '{print $2}') * 100" | bc); SWAP_USED=$(free -m | grep Swap | awk '{print $3}'); (( $(echo "$AVAILABLE_PERCENT < $THRESHOLD" | bc -l) )) && (( $SWAP_USED > 0 )) && echo "WARNING: System is at risk of OOM! Available memory: $AVAILABLE_PERCENT%, Swap used: $SWAP_USED MB" || echo "OK: Available memory is $AVAILABLE_PERCENT%, Swap used: $SWAP_USED MB"
+                        """
+        result = subprocess.run(bash_command, shell=True, capture_output=True, text=True)
+        output = result.stdout.strip()
+
+        if "WARNING" in output:
+            print(output)
+            self.memory_is_healthy = False
+        else:
+            print(output)
+            self.memory_is_healthy = True
+
+        return self.memory_is_healthy

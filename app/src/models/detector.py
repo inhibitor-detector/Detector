@@ -15,8 +15,7 @@ class Detector:
         self.basic_authorization = "Basic " + base64.b64encode(basic_auth_string.encode('utf-8')).decode('utf-8')
         self.rfcat_pid = int(constants.RFCAT_PID)
         self.bearer_token = None
-        self.expires_in = None
-        self.last_token_timestamp = None
+        self.expires_at = None
         self.id = self.get_id()
         self.signals_url = '/signals'
         self.inhibition_detected_lock = threading.Lock()
@@ -126,23 +125,51 @@ class Detector:
             return
         
         self.handle_response(response)
-        # return response.text.get('id') #TODO implement, get from bearer token
-        return 1
-    
+        return self.extract_id(response) #extrat the id from the bearer token
+        
+    def extract_id(self, response):
+        # Extract ID from JWT token in Authorization header
+        token = response.headers.get('Authorization')
+        if not token or not token.startswith('Bearer '):
+            print("No valid bearer token found in response")
+            alarm.play_error()
+            return None
+        
+        try: # decode token
+            token = token.split(' ')[1]
+            decoded = jwt.decode(token, options={"verify_signature": False})
+            detector_id = decoded.get('userId')
+            if detector_id is None:
+                print("No userId found in token")
+                alarm.play_error()
+                return None
+            return detector_id
+        except jwt.InvalidTokenError as e:
+            print(f"Failed to decode JWT token: {e}")
+            alarm.play_error()
+            return None
+
     def extract_token(self, response):
         self.bearer_token = response.headers.get('Authorization')
-        # self.expires_in = response.headers.get('expires_in') #TODO extract from bearer token, wait for API implementation
-        self.last_token_timestamp = time.time()
-        # print("Bearer token: " + self.bearer_token)
-        # print("Expires in: " + self.expires_in)
-        # print("Last token timestamp: " + str(self.last_token_timestamp))
-
+        if self.bearer_token and self.bearer_token.startswith('Bearer '):
+            try: # decode token
+                token = self.bearer_token.split(' ')[1]
+                decoded = jwt.decode(token, options={"verify_signature": False})
+                exp = decoded.get('exp')
+                if exp:
+                    self.expires_at = exp
+            except jwt.InvalidTokenError as e:
+                print(f"Failed to decode JWT token: {e}")
+                self.expires_at = None
 
     def get_authorization(self, must_use_basic=False):
         if must_use_basic or self.bearer_token is None:
             return self.basic_authorization
-        # if time.time() - self.last_token_timestamp > self.expires_in: #TODO wait for implementation
-        #     return self.basic_authorization
+        # if token expired, use basic auth:
+        if (self.expires_at is not None and time.time() > self.expires_at):
+            return self.basic_authorization
+        if self.expires_at is None:
+            return self.basic_authorization
         return self.bearer_token
 
 if __name__ == "__main__": #to execute on PC for tests. This won't run in the RPI

@@ -75,6 +75,7 @@ class Detector:
         return data
 
     def post(self, url, data, must_use_basic=False):
+        print("Posting data to " + self.api_endpoint + url)
         headers={'Content-Type': 'application/json', 'Authorization': self.get_authorization(must_use_basic)}
         response = None
         try:
@@ -107,6 +108,8 @@ class Detector:
             print("200 OK")
         if response.status_code == 201:
             print("201 Created")
+        else:
+            print("Response status code: " + str(response.status_code))
         self.extract_token(response)
 
     def get_id(self):
@@ -134,7 +137,7 @@ class Detector:
             print("No valid bearer token found in response")
             alarm.play_error()
             return None
-        
+        print("extract_id Token: " + token)
         try: # decode token
             token = token.split(' ')[1]
             decoded = jwt.decode(token, options={"verify_signature": False})
@@ -143,6 +146,7 @@ class Detector:
                 print("No userId found in token")
                 alarm.play_error()
                 return None
+            print("extract_id Detector ID: " + detector_id)
             return detector_id
         except jwt.InvalidTokenError as e:
             print(f"Failed to decode JWT token: {e}")

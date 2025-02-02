@@ -146,7 +146,7 @@ class Detector:
                 print("No userId found in token")
                 alarm.play_error()
                 return None
-            print("extract_id Detector ID: " + detector_id)
+            print("extract_id Detector ID: " + str(detector_id))
             return detector_id
         except jwt.InvalidTokenError as e:
             print(f"Failed to decode JWT token: {e}")

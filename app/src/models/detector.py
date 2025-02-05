@@ -98,11 +98,11 @@ class Detector:
         self.handle_response(response)
     
     def handle_response(self, response):
-        # print("Response:")
-        # print(response.status_code)
-        # print(response.text)
         if response.status_code == 401:
             print("401 Unauthorized")
+            return
+        if response.status_code == 403:
+            print("403 Forbidden Client, not authorized")
             return
         if response.status_code == 200:
             print("200 OK")
@@ -141,9 +141,9 @@ class Detector:
         try: # decode token
             token = token.split(' ')[1]
             decoded = jwt.decode(token, options={"verify_signature": False})
-            detector_id = decoded.get('userId')
+            detector_id = decoded.get('detectorId')
             if detector_id is None:
-                print("No userId found in token")
+                print("No detectorId found in token")
                 alarm.play_error()
                 return None
             print("extract_id Detector ID: " + str(detector_id))

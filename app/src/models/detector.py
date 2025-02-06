@@ -62,7 +62,7 @@ class Detector:
     def generate_data(self, isHeartbeat, failed=False, rfcat_failed=False, analyzer_failed=False, memory_failed=False):
         data = {
                     "timestamp": datetime.now().isoformat(),
-                    "userId": self.id,
+                    "detectorId": self.id,
                     "isHeartbeat": isHeartbeat,
                     "acknowledged": False
                 }
@@ -141,13 +141,13 @@ class Detector:
         try: # decode token
             token = token.split(' ')[1]
             decoded = jwt.decode(token, options={"verify_signature": False})
-            user_id = decoded.get('userId')
-            if user_id is None:
-                print("No user_id found in token")
+            detector_id = decoded.get('detectorId')
+            if detector_id is None:
+                print("No detector_id found in token")
                 alarm.play_error()
                 return None
-            print("extract_id Detector ID: " + str(user_id))
-            return user_id
+            print("extract_id Detector ID: " + str(detector_id))
+            return detector_id
         except jwt.InvalidTokenError as e:
             print(f"Failed to decode JWT token: {e}")
             alarm.play_error()

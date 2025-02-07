@@ -146,6 +146,10 @@ class Detector:
                 print("No detector_id found in token")
                 alarm.play_error()
                 return None
+            elif detector_id == -1: 
+                print("Detector ID is -1, not valid")
+                alarm.play_error()
+                return None
             print("extract_id Detector ID: " + str(detector_id))
             return detector_id
         except jwt.InvalidTokenError as e:

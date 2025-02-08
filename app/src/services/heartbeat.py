@@ -22,6 +22,7 @@ class HeartbeatService:
             time.sleep(3)
         if self.analyzer_service.yard_successful_init:
             print("YARD Successful initialization")
+            self.yard_is_running = True
             self.detector.successful_init()
         else:
             print("YARD Failed initialization")

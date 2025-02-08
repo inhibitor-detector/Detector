@@ -64,15 +64,32 @@ class Detector:
                     "timestamp": datetime.now().isoformat(),
                     "detectorId": self.id,
                     "isHeartbeat": isHeartbeat,
-                    "acknowledged": False
+                    "acknowledged": False,
+                    "status": 1,
                 }
-        if failed: #TODO add to API
-            data["failed"] = failed
-            data["rfcatFailed"] = rfcat_failed
-            data["analyzerFailed"] = analyzer_failed
-            data["memoryFailed"] = memory_failed
+        if failed: #WIP adding to API
+            status_bitmap = self.generate_bitmap(failed, rfcat_failed, analyzer_failed, memory_failed)
+            data["status"] = status_bitmap
         data = json.dumps(data)
         return data
+    
+    def generate_bitmap(self, failed, rfcat_failed, analyzer_failed, memory_failed):
+            # bitmap: MEMORY_FAILED - ANALYZER_FAILED - RFCAT_FAILED - FAILED - ACTIVE
+            MEMORY_FAILED = 16
+            ANALYZER_FAILED = 8
+            RFCAT_FAILED = 4
+            FAILED = 2
+            ACTIVE = 1
+
+            bitmap = ACTIVE
+            if memory_failed:
+                bitmap |= MEMORY_FAILED
+            if analyzer_failed:
+                bitmap |= ANALYZER_FAILED
+            if rfcat_failed:
+                bitmap |= RFCAT_FAILED
+            if failed:
+                bitmap |= FAILED
 
     def post(self, url, data, must_use_basic=False):
         print("Posting data to " + self.api_endpoint + url)

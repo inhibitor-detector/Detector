@@ -80,6 +80,7 @@ class Detector:
         if failed: #WIP adding to API
             status_bitmap = self.generate_bitmap(failed, rfcat_failed, analyzer_failed, yard_failed, memory_failed)
             data["status"] = status_bitmap
+            print("status_bitmap:")
             print(status_bitmap)
         data = json.dumps(data)
         return data
@@ -104,6 +105,7 @@ class Detector:
                 bitmap |= RFCAT_FAILED
             if failed:
                 bitmap |= FAILED
+            return bitmap
 
     def post(self, url, data, must_use_basic=False):
         print("Posting data to " + self.api_endpoint + url)

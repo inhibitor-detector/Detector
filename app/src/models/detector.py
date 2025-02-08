@@ -70,6 +70,7 @@ class Detector:
         if failed: #WIP adding to API
             status_bitmap = self.generate_bitmap(failed, rfcat_failed, analyzer_failed, memory_failed)
             data["status"] = status_bitmap
+            print(status_bitmap)
         data = json.dumps(data)
         return data
     

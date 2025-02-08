@@ -32,6 +32,7 @@ class AnalyzerService:
                 if not self.inhibiton_detected:
                     print("No inhibiton detected.")
                 self.inhibiton_detected = False #reset inhibiton detection flag
+                self.yard_error_detected = False #reset yard error detection flag
     
     def run_analysis(self):
         print("Running analysis of log file...")

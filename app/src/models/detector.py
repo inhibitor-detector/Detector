@@ -182,7 +182,7 @@ class Detector:
                 print("Detector ID is -1, not valid")
                 alarm.play_error()
                 return None
-            print("extracted Detector ID: " + str(detector_id))
+            print("Extracted Detector ID: " + str(detector_id))
             return detector_id
         except jwt.InvalidTokenError as e:
             print(f"Failed to decode JWT token: {e}")

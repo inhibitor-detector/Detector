@@ -59,6 +59,9 @@ class HeartbeatService:
         if self.analyzer_service.yard_error_detected:
             print("YARD error detected")
             self.yard_is_running = False
+        else :
+            print("YARD is still running.")
+            self.yard_is_running = True
         return self.analyzer_is_running
     
     def check_memory(self):

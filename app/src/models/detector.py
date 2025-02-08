@@ -36,10 +36,20 @@ class Detector:
             print("Posting a successfull heartbeat...")
             data = self.generate_data(isHeartbeat=True)
         else:
-            print("Playing error beep")
-            alarm.play_error()
             print("Posting a failed heartbeat...")
-            data = self.generate_data(isHeartbeat=True, failed=True, rfcat_failed = not is_rfcat_running, analyzer_failed = not is_analyzer_running, yard_failed = not is_yard_running, memory_failed = not is_memory_healthy)
+            failed_components = []
+            if not is_rfcat_running:
+                failed_components.append("RFCAT")
+            if not is_analyzer_running:
+                failed_components.append("ANALYZER")
+            if not is_yard_running:
+                failed_components.append("YARD")
+            if not is_memory_healthy:
+                failed_components.append("MEMORY")
+            if failed_components:
+                print("Failed components: " + ", ".join(failed_components))
+            alarm.play_error()
+            data = self.generate_data(isHeartbeat=True, failed=True, rfcat_failed=not is_rfcat_running, analyzer_failed=not is_analyzer_running, yard_failed=not is_yard_running, memory_failed=not is_memory_healthy)
         self.post(self.signals_url, data)
 
     def inhibition_detected(self):

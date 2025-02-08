@@ -85,6 +85,7 @@ def play_setup():
     play_sound(tetris_song_1)
 
 def play_error():
+    print("Playing error beep")
     play_sound(error_sound)
 
 play_initial_beep()

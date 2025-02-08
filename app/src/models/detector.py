@@ -25,21 +25,21 @@ class Detector:
         alarm.play_setup()
     
     def failed_init(self):
-        self.post_heartbeat(False, False, False)
+        self.post_heartbeat(False, False, False, False)
         print("Playing wrong setup beep")
         while True:
             alarm.play_error()
             time.sleep(1)
 
-    def post_heartbeat(self, is_rfcat_running, is_analyzer_running, is_memory_healthy):
-        if is_rfcat_running and is_analyzer_running and is_memory_healthy:
+    def post_heartbeat(self, is_rfcat_running, is_analyzer_running, is_yard_running, is_memory_healthy):
+        if is_rfcat_running and is_analyzer_running and is_yard_running and is_memory_healthy:
             print("Posting a successfull heartbeat...")
             data = self.generate_data(isHeartbeat=True)
         else:
             print("Playing error beep")
             alarm.play_error()
             print("Posting a failed heartbeat...")
-            data = self.generate_data(isHeartbeat=True, failed=True, rfcat_failed = not is_rfcat_running, analyzer_failed = not is_analyzer_running, memory_failed = not is_memory_healthy)
+            data = self.generate_data(isHeartbeat=True, failed=True, rfcat_failed = not is_rfcat_running, analyzer_failed = not is_analyzer_running, yard_failed = not is_yard_running, memory_failed = not is_memory_healthy)
         self.post(self.signals_url, data)
 
     def inhibition_detected(self):
@@ -59,7 +59,7 @@ class Detector:
             data = self.generate_data(isHeartbeat=False)
             self.post(self.signals_url, data)
 
-    def generate_data(self, isHeartbeat, failed=False, rfcat_failed=False, analyzer_failed=False, memory_failed=False):
+    def generate_data(self, isHeartbeat, failed=False, rfcat_failed=False, analyzer_failed=False, yard_failed=False, memory_failed=False):
         data = {
                     "timestamp": datetime.now().isoformat(),
                     "detectorId": self.id,
@@ -68,15 +68,16 @@ class Detector:
                     "status": 1,
                 }
         if failed: #WIP adding to API
-            status_bitmap = self.generate_bitmap(failed, rfcat_failed, analyzer_failed, memory_failed)
+            status_bitmap = self.generate_bitmap(failed, rfcat_failed, analyzer_failed, yard_failed, memory_failed)
             data["status"] = status_bitmap
             print(status_bitmap)
         data = json.dumps(data)
         return data
     
-    def generate_bitmap(self, failed, rfcat_failed, analyzer_failed, memory_failed):
-            # bitmap: MEMORY_FAILED - ANALYZER_FAILED - RFCAT_FAILED - FAILED - ACTIVE
-            MEMORY_FAILED = 16
+    def generate_bitmap(self, failed, rfcat_failed, analyzer_failed, yard_failed, memory_failed):
+            # bitmap: MEMORY_FAILED - YARD_FAILED - ANALYZER_FAILED - RFCAT_FAILED - FAILED - ACTIVE
+            MEMORY_FAILED = 32
+            YARD_FAILED = 16
             ANALYZER_FAILED = 8
             RFCAT_FAILED = 4
             FAILED = 2
@@ -85,6 +86,8 @@ class Detector:
             bitmap = ACTIVE
             if memory_failed:
                 bitmap |= MEMORY_FAILED
+            if yard_failed:
+                bitmap |= YARD_FAILED
             if analyzer_failed:
                 bitmap |= ANALYZER_FAILED
             if rfcat_failed:

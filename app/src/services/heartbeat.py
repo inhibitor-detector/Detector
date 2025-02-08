@@ -11,6 +11,7 @@ class HeartbeatService:
         self.detector = detector
         self.rfcat_is_running = False
         self.analyzer_is_running = False
+        self.yard_is_running = False
         self.analyzer_job = analyzer_job
         self.analyzer_service = analyzer_service
         self.memory_is_healthy = False
@@ -31,7 +32,7 @@ class HeartbeatService:
         while True:
             time.sleep(10)
             print("Heart beating...")            
-            self.detector.post_heartbeat(self.check_rfcat(), self.check_analyzer(), self.check_memory())
+            self.detector.post_heartbeat(self.check_rfcat(), self.check_analyzer(), self.yard_is_running, self.check_memory())
     
     def check_rfcat(self):
         try:
@@ -56,7 +57,7 @@ class HeartbeatService:
             self.analyzer_is_running = False
         if self.analyzer_service.yard_error_detected:
             print("YARD error detected")
-            self.analyzer_is_running = False
+            self.yard_is_running = False
         return self.analyzer_is_running
     
     def check_memory(self):

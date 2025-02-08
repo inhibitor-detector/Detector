@@ -154,7 +154,6 @@ class Detector:
             print("No valid bearer token found in response")
             alarm.play_error()
             return None
-        print("extract_id Token: " + token)
         try: # decode token
             token = token.split(' ')[1]
             decoded = jwt.decode(token, options={"verify_signature": False})

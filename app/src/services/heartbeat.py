@@ -59,6 +59,7 @@ class HeartbeatService:
         if self.analyzer_service.yard_error_detected:
             print("YARD error detected")
             self.yard_is_running = False
+            self.analyzer_service.yard_error_detected = False #reset yard error detection flag
         else :
             print("YARD is still running.")
             self.yard_is_running = True

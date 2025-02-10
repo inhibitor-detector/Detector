@@ -17,8 +17,8 @@ export PYTHON_PID=$!
 echo "python main started"
 
 echo "#!/bin/bash" > stop.sh
-echo "kill $RFCAT_PID" >> stop.sh
-echo "kill $PYTHON_PID" >> stop.sh
+echo "kill $RFCAT_PID || true" >> stop.sh
+echo "kill $PYTHON_PID || true" >> stop.sh
 
 echo "done starting, enjoy!"
 exit

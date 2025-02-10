@@ -63,7 +63,7 @@ class Detector:
     
     def sound_alarm_infinite(self):
         while True:
-            alarm.play_alarm()
+            alarm.play_error()
             time.sleep(1)
 
     def post_inhibition_detected(self):

@@ -4,10 +4,14 @@ setup:
 	./setup.sh
 
 start:
-	./start.sh
+	./start_supervisor.sh
 
 stop:
 	./stop.sh
+
+restart:
+	./stop.sh
+	./start.sh
 	
 generate-env:
 	cp ./app/.env.example ./app/.env

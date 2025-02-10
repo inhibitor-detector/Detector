@@ -27,9 +27,7 @@ class Detector:
     def failed_init(self):
         self.post_heartbeat(False, False, False, False)
         print("Playing wrong setup beep")
-        while True:
-            alarm.play_error()
-            time.sleep(1)
+        threading.Thread(target=self.sound_alarm_infinite).start()
 
     def post_heartbeat(self, is_rfcat_running, is_analyzer_running, is_yard_running, is_memory_healthy):
         if is_rfcat_running and is_analyzer_running and is_yard_running and is_memory_healthy:
@@ -62,6 +60,11 @@ class Detector:
     def sound_alarm(self):
         print("Sounding alarm...")
         alarm.play_alarm()
+    
+    def sound_alarm_infinite(self):
+        while True:
+            alarm.play_alarm()
+            time.sleep(1)
 
     def post_inhibition_detected(self):
         with self.inhibition_detected_lock:

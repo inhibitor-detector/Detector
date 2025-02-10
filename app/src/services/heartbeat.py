@@ -34,7 +34,7 @@ class HeartbeatService:
             time.sleep(10)
             print("Heart beating...")            
             self.detector.post_heartbeat(self.check_rfcat(), self.check_analyzer(), self.yard_is_running, self.check_memory())
-            self.require_heathy_system()
+            self.require_healthy_system()
     
     def require_healthy_system(self):
         if not self.rfcat_is_running or not self.analyzer_is_running or not self.yard_is_running:

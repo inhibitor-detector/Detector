@@ -4,10 +4,13 @@ setup:
 	./setup.sh
 
 start:
-	./start_supervisor.sh
+	./supervisor.sh
 
 stop:
 	./stop.sh
+
+stop_supervisor:
+	pgrep -f supervisor | kill -9
 
 restart:
 	./stop.sh

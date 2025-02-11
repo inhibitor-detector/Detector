@@ -10,7 +10,9 @@ stop:
 	./stop.sh
 
 stop_supervisor:
-	kill -9 $(pgrep -f supervisor)
+	kill -9 $$(pgrep -f supervisor)
+
+stop_all: stop_supervisor stop
 
 restart:
 	./stop.sh

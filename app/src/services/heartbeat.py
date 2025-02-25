@@ -26,7 +26,8 @@ class HeartbeatService:
             self.detector.successful_init()
         else:
             print("YARD Failed initialization")
-            self.detector.failed_init()
+            # self.detector.failed_init()
+            self.yard_is_running=False
         self.start_beating()
 
     def start_beating(self):

@@ -10,13 +10,10 @@ stop:
 	./stop.sh
 
 stop_supervisor:
-	@if pgrep -f supervisor > /dev/null; then \
-		kill -9 $$(pgrep -f supervisor); \
-	else \
-		echo "No supervisor process found."; \
-	fi
+	kill -9 $$(pgrep -f supervisor)
 
-stop_all: stop_supervisor
+stop_all:
+	$(MAKE) stop_supervisor
 	$(MAKE) stop
 
 restart:

@@ -12,7 +12,8 @@ stop:
 stop_supervisor:
 	kill -9 $$(pgrep -f supervisor)
 
-stop_all: stop_supervisor stop
+stop_all: stop_supervisor
+	$(MAKE) stop
 
 restart:
 	./stop.sh

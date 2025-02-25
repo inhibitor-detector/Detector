@@ -13,7 +13,7 @@ stop_supervisor:
 	kill -9 $$(pgrep -f supervisor)
 
 stop_all:
-	kill -9 $$(pgrep -f supervisor)
+	kill -9 $$(pgrep -f supervisor) &
 	./stop.sh
 
 restart:

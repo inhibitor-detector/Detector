@@ -4,7 +4,7 @@ setup:
 	./setup.sh
 
 start:
-	./supervisor.sh
+	./supervisor.sh &
 
 stop:
 	./stop.sh

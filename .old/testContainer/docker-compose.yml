@@ -1,5 +1,0 @@
-version: '3'
-services:
-  my_service:
-    image: tataabancens/tesis:0.1
-    restart: unless-stopped

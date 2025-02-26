@@ -26,15 +26,17 @@ class HeartbeatService:
             self.detector.successful_init()
         else:
             print("YARD Failed initialization")
-            # self.detector.failed_init()
             self.yard_is_running=False
         self.start_beating()
 
     def start_beating(self):
+        print("First heart beat...")            
+        self.detector.post_heartbeat(self.check_rfcat(), self.check_analyzer(), self.yard_is_running, self.check_memory(), first_heartbeat=True, self)
+        self.require_healthy_system()
         while True:
             time.sleep(10)
             print("Heart beating...")            
-            self.detector.post_heartbeat(self.check_rfcat(), self.check_analyzer(), self.yard_is_running, self.check_memory())
+            self.detector.post_heartbeat(self.check_rfcat(), self.check_analyzer(), self.yard_is_running, self.check_memory(), self)
             self.require_healthy_system()
     
     def require_healthy_system(self):

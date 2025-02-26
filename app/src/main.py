@@ -33,6 +33,7 @@ def check_params():
         print("RFCAT_PID environment variables is not set.")
         exit(1)
 
+# To execute on PC for tests. This won't run in the RPI
 if __name__ == '__main__':
     print("Starting...")
     check_params()

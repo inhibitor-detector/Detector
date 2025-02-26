@@ -91,7 +91,7 @@ class AnalyzerService:
     def has_rfcat_exited(self):
         return self.rfcat_has_exited
 
-
+# To execute on PC for tests. This won't run in the RPI
 if __name__ == "__main__":
     pass
     analyzer = AnalyzerService("Detector()", "../logs/example/short.txt")

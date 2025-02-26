@@ -215,7 +215,8 @@ class Detector:
             return self.basic_authorization
         return self.bearer_token
 
-if __name__ == "__main__": #to execute on PC for tests. This won't run in the RPI
+# To execute on PC for tests. This won't run in the RPI
+if __name__ == "__main__":
     constants.DETECTOR_USER="det_1_cliente_1" #dont know if this inline definition of constants.x works
     constants.PASSWORD="12345678"
     constants.API_URL="http://192.168.0.234:8000"

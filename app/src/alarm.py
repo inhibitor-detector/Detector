@@ -93,6 +93,7 @@ play_initial_beep()
 def cleanup():
     GPIO.cleanup()
 
+# To execute on PC for tests. This won't run in the RPI
 if __name__ == "__main__":
     play_error()
     cleanup()

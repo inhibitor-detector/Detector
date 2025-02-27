@@ -12,7 +12,7 @@ touch "$filename"
 export RFCAT_PID=$!
 echo "rfcat started"
 
-python ./app/src/main.py $filename &
+python -u ./app/src/main.py $filename &
 export PYTHON_PID=$!
 echo "python main started"
 

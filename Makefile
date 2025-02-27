@@ -4,7 +4,8 @@ setup:
 	./setup.sh
 
 start:
-	./supervisor.sh >> supervisor.log 2>&1 &
+	./supervisor.sh >> output.log 2>&1 &
+	tail -f output.log
 
 stop:
 	./stop.sh

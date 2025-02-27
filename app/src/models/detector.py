@@ -24,7 +24,7 @@ class Detector:
     def successful_init(self):
         alarm.play_setup()
 
-    def post_heartbeat(self, is_rfcat_running, is_analyzer_running, is_yard_running, is_memory_healthy, is_first_heartbeat=False):
+    def post_heartbeat(self, is_rfcat_running, is_analyzer_running, is_yard_running, is_memory_healthy, is_first_heartbeat):
         if is_rfcat_running and is_analyzer_running and is_yard_running and is_memory_healthy:
             print("Posting a successfull heartbeat...")
             data = self.generate_data(isHeartbeat=True, is_first_heartbeat=is_first_heartbeat)
@@ -219,6 +219,5 @@ if __name__ == "__main__":
     constants.PASSWORD="12345678"
     constants.API_URL="http://192.168.0.234:8000"
     detector = Detector()
-    # detector.post_heartbeat(True, True)
     # detector.inhibition_detected()
     detector.sound_alarm()

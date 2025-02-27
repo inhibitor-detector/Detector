@@ -23,11 +23,6 @@ class Detector:
     
     def successful_init(self):
         alarm.play_setup()
-    
-    # def failed_init(self):
-    #     self.post_heartbeat(False, False, False, False)
-    #     print("Playing wrong setup beep")
-    #     threading.Thread(target=self.sound_alarm_infinite).start()
 
     def post_heartbeat(self, is_rfcat_running, is_analyzer_running, is_yard_running, is_memory_healthy, is_first_heartbeat=False):
         if is_rfcat_running and is_analyzer_running and is_yard_running and is_memory_healthy:

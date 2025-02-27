@@ -29,7 +29,4 @@ expect "Exiting Discover mode...\r\n>>> "
 send "exit()\n"
 expect "====="
 
-#interact #this command hands control to the user
-
 #wait #this command waits for the process to end?
-

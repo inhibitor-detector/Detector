@@ -4,10 +4,6 @@
 get_pids() {
     rfcat_pid=$(grep -oP "kill \K\d+" stop.sh | head -n 1)  # First PID for rfcat
     python_pid=$(grep -oP "kill \K\d+" stop.sh | tail -n 1)  # Second PID for Python
-
-    # todo remove this echos
-    echo "rfcat PID: $rfcat_pid"
-    echo "Python PID: $python_pid"
 }
 
 ./start.sh &

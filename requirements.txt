@@ -1,5 +1,3 @@
-#TODO add versions
-# con pip show te muestra la que tenes
-requests
-schedule
-python-dotenv
+requests==2.31.0
+schedule==1.2.1
+python-dotenv==0.21.1

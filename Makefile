@@ -9,7 +9,7 @@ start:
 	@echo "You can now run 'make logs' to view the logs in real time"
 
 logs:
-        @tail -f -n+0 output.log
+	@tail -f -n+0 output.log
 
 stop:
 	./stop.sh

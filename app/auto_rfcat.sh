@@ -21,7 +21,18 @@ expect "(Press Enter to quit)\r"
 #     send "do_something_else\r"
 # }
 
-sleep 600
+# Load the .env variable
+set sleep_time [exec bash -c 'source .env && echo $SLEEP']
+
+# Check if sleep_time is a number
+if {[string is double $sleep_time]} {
+    puts "Waiting x seconds"
+    puts $sleep_time
+    sleep $sleep_time
+} else {
+    puts "Waiting indefinitely..."
+    expect "string that will not appear" # Wait indefinitely
+}
 
 send "\r"
 expect "Exiting Discover mode...\r\n>>> "

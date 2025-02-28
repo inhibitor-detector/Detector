@@ -4,9 +4,9 @@ setup:
 	./setup.sh
 
 start:
-        ./supervisor.sh > output.log 2>&1 &
-        @echo "Starting..."
-		@echo "You can now run 'make logs' to view the logs in real time"
+	./supervisor.sh > output.log 2>&1 &
+	@echo "Starting..."
+	@echo "You can now run 'make logs' to view the logs in real time"
 
 logs:
         @tail -f -n+0 output.log

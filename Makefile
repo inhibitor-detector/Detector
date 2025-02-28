@@ -1,11 +1,15 @@
-.PHONY: setup start stop generate-env
+.PHONY: setup start stop generate-env logs
 
 setup:
 	./setup.sh
 
 start:
-	./supervisor.sh > output.log 2>&1 &
-	tail -f output.log
+        ./supervisor.sh > output.log 2>&1 &
+        @echo "Starting..."
+		@echo "You can now run 'make logs' to view the logs in real time"
+
+logs:
+        @tail -f -n+0 output.log
 
 stop:
 	./stop.sh

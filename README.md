@@ -2,7 +2,7 @@
 
 ## In this repo
 
-This repo contains all the necesarry software to run the Detector on our "Detector de Inhibidores" Product.
+This repo contains all the necessary software to run the Detector on our "Detector de Inhibidores" Product.
 
 This software is intended to run on each Raspberry Pi that will be used as a detector.
 
@@ -23,7 +23,7 @@ make setup
 Note: this will download and install:
 - [rfcat](https://github.com/atlas0fd00m/rfcat)
 - [expect](https://linux.die.net/man/1/expect)
-- The necesarry python libraries to make this project work
+- The necessary python libraries to make this project work
 
 4. Configure .env
 ```bash
@@ -38,7 +38,7 @@ To run the software from the RPI, you must:
 make start
 ```
 
-This will start an [Expect session](./app/auto_rfcat.sh), running a configrued rfcat instance that will print on a file it's output.
+This will start an [Expect session](./app/auto_rfcat.sh), running a configured rfcat instance that will print on a file it's output.
 Concurrently, this will start a Python program which has various concurrently-running services inside:
 - [Main](./app/src/main.py)
   - This is in charge of setting up and running the rest of the services concurrently, as well as verifying some basic input data (if the logs file exists, etc) 
